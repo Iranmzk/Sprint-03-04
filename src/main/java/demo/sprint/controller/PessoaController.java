@@ -47,11 +47,6 @@ public class PessoaController {
         return "cookie-recived/";
     }
 
-    @DeleteMapping("/pessoa")
-    public void delete(@RequestBody Pessoa pessoa) {
-        service.delete(pessoa);
-    }
-
         @DeleteMapping(path = "/{id}")
         public void deleteById(@PathVariable String id){
             service.deleteById(id);
