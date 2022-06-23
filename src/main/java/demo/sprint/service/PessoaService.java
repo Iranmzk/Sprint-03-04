@@ -33,4 +33,8 @@ public class PessoaService {
     public void deleteAllById(@RequestParam("id") List<String> id){
         repositorio.deleteAllById(id);
     }
+
+    public List<Pessoa> findByNome(@RequestParam("nome") String nome){
+        return repositorio.findByNomeContains(nome);
+        }
     }
