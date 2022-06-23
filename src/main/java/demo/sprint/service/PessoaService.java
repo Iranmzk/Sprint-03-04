@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import demo.sprint.repository.PessoaRepositorio;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PessoaService {
@@ -28,10 +30,7 @@ public class PessoaService {
     public List<Pessoa> findAll(){
         return repositorio.findAll();
     }
-    public void delete(Pessoa pessoa){
-        repositorio.delete(pessoa);
+    public void deleteAllById(@RequestParam("id") List<String> id){
+        repositorio.deleteAllById(id);
     }
-    public void deleteById(String id){
-        repositorio.deleteById(id);
     }
-}

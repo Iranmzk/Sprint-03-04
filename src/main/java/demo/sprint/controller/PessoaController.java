@@ -3,7 +3,10 @@ package demo.sprint.controller;
 import demo.sprint.model.Pessoa;
 import demo.sprint.service.PessoaService;
 import lombok.AllArgsConstructor;
+import lombok.experimental.Delegate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.DeleteQuery;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +38,7 @@ public class PessoaController {
         return service.findOne(id);
     }
 
-    @GetMapping("/geral")
+    @GetMapping("/")
     public List<Pessoa> findAll(){
         return service.findAll();
     }
@@ -47,14 +51,9 @@ public class PessoaController {
         return "cookie-recived/";
     }
 
-        @DeleteMapping(path = "/{id}")
-        public void deleteById(@PathVariable String id){
-            service.deleteById(id);
-    }
-
-    @PutMapping("/pessoa")
-    public Pessoa atualizarPessoa(@RequestBody Pessoa pessoa){
-        return service.save(pessoa);
+    @DeleteMapping("/delete")
+    public void deleteById(@RequestParam("id") List<String> id){
+        service.deleteAllById(id);
     }
 
     @PatchMapping("/pessoa")
