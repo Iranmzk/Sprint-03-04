@@ -3,7 +3,6 @@ package demo.sprint.controller;
 
 import demo.sprint.model.Pessoa;
 import demo.sprint.service.PessoaService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +15,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/sprint03")
 public class PessoaController {
-    @Autowired
-    private final PessoaService service;
+   @Autowired
+    private  PessoaService pessoaService;
+//
+//    public PessoaController(PessoaService pessoaService) {
+//        this.pessoaService = pessoaService;
+//    }
 
     @PostMapping("/pessoa")
     @ResponseStatus(HttpStatus.CREATED)
     public Pessoa save(@RequestBody Pessoa pessoa){
-        return service.save(pessoa);
+        return pessoaService.save(pessoa);
     }
 
     @GetMapping("/{id}")
     public Optional<Pessoa> findOne(@PathVariable String id){
-        return service.findOne(id);
+        return pessoaService.findOne(id);
     }
 
     @GetMapping("/")
     public List<Pessoa> findAll(){
-        return service.findAll();
+        return pessoaService.findAll();
     }
 
     @GetMapping("/create-coockie")
@@ -48,17 +50,17 @@ public class PessoaController {
 
     @DeleteMapping("/delete")
     public void deleteById(@RequestParam("id") List<String> id){
-        service.deleteAllById(id);
+        pessoaService.deleteAllById(id);
     }
 
     @PutMapping("/{id}")
     public Pessoa putPessoa(@RequestBody Pessoa pessoa){
-        return service.save(pessoa);
+        return pessoaService.save(pessoa);
     }
 
     @GetMapping("/filtro")
-    public List<Pessoa> findPessoaNome(@RequestParam("nome") String nome){
-       return service.findByNome(nome);
+    public Optional<Pessoa> findPessoaNome(@RequestParam("nome") String nome){
+       return pessoaService.findByNome(nome);
     }
 
     }

@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface PessoaRepositorio extends MongoRepository<Pessoa,String> {
-    List<Pessoa> findByNomeContains(String nome);
+    Optional<Pessoa> findByNomeContains(String nome);
 }
