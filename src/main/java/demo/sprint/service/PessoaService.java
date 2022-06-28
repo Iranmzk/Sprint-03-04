@@ -35,7 +35,7 @@ public class PessoaService {
 
     public Optional<Pessoa> findByNome(@RequestParam("nome") String nome){
         return Optional.of(repositorio.findByNomeContains(nome)
-                .orElseThrow
-                        ((() -> new ApiRequestException("NOME não encontrado"))));
-        }
+//                        .map(pessoa -> pessoa.getNome().toLowerCase())
+                .orElseThrow(() -> new ApiRequestException("NOME não encontrado")));
+    }
     }

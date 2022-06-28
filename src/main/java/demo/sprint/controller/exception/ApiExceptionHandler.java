@@ -13,8 +13,6 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
-
-
     @ExceptionHandler(ApiRequestException.class)
     @ResponseStatus(BAD_REQUEST)
     public ResponseEntity<ApiExceptionBadRequest> handleApiRequestException (ApiRequestException e, HttpServletRequest httpServletRequest){
@@ -32,6 +30,5 @@ public class ApiExceptionHandler {
         apiException.setZonedDateTime(ZonedDateTime.now());
         //2. Return response entity
         return new ResponseEntity<>(apiException, badRequest);
-
     }
 }
