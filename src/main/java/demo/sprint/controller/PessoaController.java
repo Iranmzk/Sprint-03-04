@@ -17,51 +17,53 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/sprint03")
 public class PessoaController {
-   @Autowired
-    private  PessoaService pessoaService;
-//
-//    public PessoaController(PessoaService pessoaService) {
-//        this.pessoaService = pessoaService;
-//    }
 
-    @PostMapping("/pessoa")
+    private  PessoaService pessoaService;
+    @Autowired
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
+    }
+
+    @PostMapping("/v1/pessoa")
     @ResponseStatus(HttpStatus.CREATED)
     public Pessoa save(@RequestBody Pessoa pessoa){
         return pessoaService.save(pessoa);
     }
-
-    @GetMapping("/{id}")
+    @GetMapping("/v1/{id}")
     public Optional<Pessoa> findOne(@PathVariable String id){
+        System.out.println("Executando Versão 01");
         return pessoaService.findOne(id);
     }
 
-    @GetMapping("/")
+    @GetMapping("/v1")
     public List<Pessoa> findAll(){
         return pessoaService.findAll();
     }
 
-    @GetMapping("/create-coockie")
+    @GetMapping("/v1/create-coockie")
     public String criandoCoookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response){
-        Cookie cookie = new Cookie("cookie-name","cookie-value");
+        Cookie cookie = new Cookie("cookieTest","cookie-value");
+        cookie.getName();
+        cookie.getComment();
         cookie.setMaxAge(60*60*24);
         response.addCookie(cookie);
         return "cookie-recived/";
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/v1/delete")
     public void deleteById(@RequestParam("id") List<String> id){
         pessoaService.deleteAllById(id);
     }
 
-    @PutMapping("/{id}")
-    public Pessoa putPessoa(@RequestBody Pessoa pessoa){
+    @PutMapping("/v1/pessoa")
+    public Pessoa updatePessoa (@RequestBody Pessoa pessoa){
         return pessoaService.save(pessoa);
     }
 
-    @GetMapping("/filtro")
-    public Optional<Pessoa> findPessoaNome(@RequestParam("nome") String nome){
-       return pessoaService.findByNome(nome);
+    @GetMapping("/v1/filtro")
+    public List<Pessoa> findPessoaNomeContains(@RequestParam("nome") String nome){
+       return pessoaService.findByNomeContains(nome);
     }
 
-    }
+}
 

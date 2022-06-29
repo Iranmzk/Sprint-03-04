@@ -18,17 +18,17 @@ public class ApiExceptionHandler {
     public ResponseEntity<ApiExceptionBadRequest> handleApiRequestException (ApiRequestException e, HttpServletRequest httpServletRequest){
         //1. Create a payload containing exception details
         HttpStatus badRequest = BAD_REQUEST;
+        ApiExceptionBadRequest apiException = new ApiExceptionBadRequest();
+        apiException.setMessage(e.getMessage());
+        apiException.setHttpStatus(badRequest);
+        apiException.setZonedDateTime(ZonedDateTime.now());
+        //2. Return response entity
+        return new ResponseEntity<>(apiException, badRequest);
 //        ApiExceptionBadRequest apiException = new ApiExceptionBadRequest(
 //                e.getMessage(),
 //                e,
 //                badRequest,
 //                ZonedDateTime.now(ZoneId.of("Z")));
-        ApiExceptionBadRequest apiException = new ApiExceptionBadRequest();
-        apiException.setMessage(e.getMessage());
 //        apiException.setError("Não encontrado");
-        apiException.setHttpStatus(badRequest);
-        apiException.setZonedDateTime(ZonedDateTime.now());
-        //2. Return response entity
-        return new ResponseEntity<>(apiException, badRequest);
     }
 }

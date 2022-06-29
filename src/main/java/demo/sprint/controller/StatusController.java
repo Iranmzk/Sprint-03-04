@@ -8,7 +8,7 @@ import java.util.Optional;
 @RestController
 public class StatusController {
 
-    @GetMapping(path = "/test")
+    @GetMapping(path = "/v1/test")
     public Optional<String> check(){
         return Optional.ofNullable("Status: Ok!");
     }
