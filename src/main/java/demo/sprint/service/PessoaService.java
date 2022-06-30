@@ -1,6 +1,7 @@
 package demo.sprint.service;
 
-import demo.sprint.controller.exception.ApiRequestException;
+import demo.sprint.configuration.ApiExceptionHandler;
+import demo.sprint.configuration.ApiRequestException;
 import demo.sprint.model.Pessoa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -26,8 +28,7 @@ public class PessoaService {
     }
 
     public Optional<Pessoa> findOne(String id){
-        return Optional.of(repositorio.findById(id)
-                .orElseThrow(() -> new ApiRequestException("ID Não encontrado " + id)));
+        throw new ApiRequestException("id");
     }
     public List<Pessoa> findAll(){
         return repositorio.findAll();
