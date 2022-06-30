@@ -4,6 +4,9 @@ import lombok.*;
 import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotBlank;
 
 @Document
 @Data
@@ -13,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Pessoa {
     @Id
     private String id;
+    @NonNull
     private String nome;
     private String sobrenome;
     private String email;

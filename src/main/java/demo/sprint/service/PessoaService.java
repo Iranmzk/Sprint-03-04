@@ -27,8 +27,10 @@ public class PessoaService {
         return repositorio.save(pessoa);
     }
 
-    public Optional<Pessoa> findOne(String id){
-        throw new ApiRequestException("id");
+    public Pessoa findOne(String id){
+        return repositorio.findById(id)
+                .orElseThrow(() -> new ApiRequestException(id));
+
     }
     public List<Pessoa> findAll(){
         return repositorio.findAll();

@@ -1,6 +1,7 @@
 package demo.sprint.controller;
 
 
+import demo.sprint.configuration.ApiRequestException;
 import demo.sprint.model.Pessoa;
 import demo.sprint.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class PessoaController {
         return pessoaService.save(pessoa);
     }
     @GetMapping("/v1/{id}")
-    public Optional<Pessoa> findOne(@PathVariable String id){
+    public Pessoa findOne(@PathVariable String id){
         System.out.println("Executando Versão 01");
         return pessoaService.findOne(id);
     }
