@@ -1,7 +1,6 @@
 package demo.sprint.controller;
 
 
-import demo.sprint.configuration.ApiRequestException;
 import demo.sprint.model.Pessoa;
 import demo.sprint.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/sprint03")
@@ -31,9 +29,9 @@ public class PessoaController {
         return pessoaService.save(pessoa);
     }
     @GetMapping("/v1/{id}")
-    public Pessoa findOne(@PathVariable String id){
+    public Pessoa findById(@PathVariable String id){
         System.out.println("Executando Versão 01");
-        return pessoaService.findOne(id);
+        return pessoaService.findById(id);
     }
 
     @GetMapping("/v1")
@@ -62,7 +60,7 @@ public class PessoaController {
     }
 
     @GetMapping("/v1/filtro")
-    public List<Pessoa> findPessoaNomeContains(@RequestParam("nome") String nome){
+    public List<Pessoa> findPessoaNomeContains(@RequestParam String nome){
        return pessoaService.findByNomeContains(nome);
     }
 

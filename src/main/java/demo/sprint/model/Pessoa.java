@@ -1,12 +1,10 @@
 package demo.sprint.model;
 
 import lombok.*;
-import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.NotBlank;
 
 @Document
 @Data
@@ -18,7 +16,10 @@ public class Pessoa {
     private String id;
     @NonNull
     private String nome;
+    @NonNull
     private String sobrenome;
+    @NonNull
     private String email;
+    @NonNull
     private Integer idade;
 }
