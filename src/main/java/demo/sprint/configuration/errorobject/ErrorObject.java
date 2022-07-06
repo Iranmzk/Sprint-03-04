@@ -1,4 +1,4 @@
-package demo.sprint.configuration;
+package demo.sprint.configuration.errorobject;
 
 import lombok.*;
 

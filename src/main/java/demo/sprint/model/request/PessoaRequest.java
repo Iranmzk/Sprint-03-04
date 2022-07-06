@@ -1,4 +1,4 @@
-package demo.sprint.model;
+package demo.sprint.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,14 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class PessoaDTO {
+public class PessoaRequest {
+    private String id;
     private String nome;
     private String sobrenome;
     private String email;
-
-    public PessoaDTO(Pessoa pessoa) {
-        nome = pessoa.getNome();
-        sobrenome = pessoa.getSobrenome();
-        email = pessoa.getEmail();
-    }
+    private Integer idade;
+    private String senha;
 }

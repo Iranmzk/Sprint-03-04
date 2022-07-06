@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Document
 @Data
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class Pessoa {
     @Id
+    @NotNull
     private String id;
     @NotBlank(message = "Por favor, insira um nome")
     private String nome;
@@ -26,9 +29,10 @@ public class Pessoa {
     @NotBlank
     private String senha;
 
-    public Pessoa(String id, String nome, @NonNull String email) {
-        this.id = id;
+    public Pessoa(String nome, @NonNull String sobrenome, @NonNull String email, Integer idade) {
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.email = email;
+        this.idade = idade;
     }
 }

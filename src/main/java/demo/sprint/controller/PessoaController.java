@@ -2,7 +2,9 @@ package demo.sprint.controller;
 
 
 import demo.sprint.model.Pessoa;
-import demo.sprint.model.PessoaDTO;
+import demo.sprint.model.mapper.PessoaMapper;
+import demo.sprint.model.request.PessoaRequest;
+import demo.sprint.model.response.PessoaResponse;
 import demo.sprint.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,18 +29,28 @@ public class PessoaController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa save(@RequestBody Pessoa pessoa){
-        return service.save(pessoa);
+    public PessoaResponse save(@Valid @RequestBody PessoaRequest pessoaRequest){
+        return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
     @GetMapping("/pessoa/{id}")
-    public PessoaDTO findById(@PathVariable String id){
+    public Pessoa findById(@PathVariable String id){
         System.out.println("Executando Versão 01");
         return service.findById(id);
     }
 
+    @GetMapping("/admin")
+    public List<PessoaResponse> findAll(){
+        return service.findAll()
+                .stream()
+                .map(PessoaMapper::pessoaResponseSenha)
+                .toList();
+    }
     @GetMapping()
-    public List<Pessoa> findAll(){
-        return service.findAll();
+    public List<PessoaResponse> findAllPessoa(){
+        return service.findAll()
+                .stream()
+                .map(PessoaMapper::pessoaResponse)
+                .toList();
     }
 
     @GetMapping("/create-coockie")
@@ -56,7 +69,15 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public Pessoa updatePessoa (@RequestBody Pessoa pessoa){
+    public Pessoa updatePessoa (@PathVariable String id,@RequestBody Pessoa pessoa){
+        service.findById(id);
+        Pessoa.builder()
+                        .nome(pessoa.getNome())
+                        .sobrenome(pessoa.getSobrenome())
+                        .email(pessoa.getEmail())
+                        .idade(pessoa.getIdade())
+                        .senha(pessoa.getSenha())
+        .build();
         return service.save(pessoa);
     }
 

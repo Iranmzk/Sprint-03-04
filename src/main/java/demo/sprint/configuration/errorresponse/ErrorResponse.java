@@ -1,6 +1,6 @@
-package demo.sprint.configuration;
+package demo.sprint.configuration.errorresponse;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import demo.sprint.configuration.errorobject.ErrorObject;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class ErrorResponse {
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
     private List<ErrorObject> error;
 }
