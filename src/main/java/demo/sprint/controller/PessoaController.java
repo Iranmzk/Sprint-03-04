@@ -2,6 +2,7 @@ package demo.sprint.controller;
 
 
 import demo.sprint.model.Pessoa;
+import demo.sprint.model.PessoaDTO;
 import demo.sprint.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,32 +15,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sprint03")
+@RequestMapping("/v1/sprint03")
 public class PessoaController {
 
-    private  PessoaService pessoaService;
+    private  PessoaService service;
     @Autowired
-    public PessoaController(PessoaService pessoaService) {
-        this.pessoaService = pessoaService;
+    public PessoaController(PessoaService service) {
+        this.service = service;
     }
 
-    @PostMapping("/v1/pessoa")
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public Pessoa save(@RequestBody Pessoa pessoa){
-        return pessoaService.save(pessoa);
+        return service.save(pessoa);
     }
-    @GetMapping("/v1/{id}")
-    public Pessoa findById(@PathVariable String id){
+    @GetMapping("/pessoa/{id}")
+    public PessoaDTO findById(@PathVariable String id){
         System.out.println("Executando Versão 01");
-        return pessoaService.findById(id);
+        return service.findById(id);
     }
 
-    @GetMapping("/v1")
+    @GetMapping()
     public List<Pessoa> findAll(){
-        return pessoaService.findAll();
+        return service.findAll();
     }
 
-    @GetMapping("/v1/create-coockie")
+    @GetMapping("/create-coockie")
     public String criandoCoookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response){
         Cookie cookie = new Cookie("cookieTest","cookie-value");
         cookie.getName();
@@ -49,20 +50,19 @@ public class PessoaController {
         return "cookie-recived/";
     }
 
-    @DeleteMapping("/v1/delete")
+    @DeleteMapping("/delete")
     public void deleteById(@RequestParam("id") List<String> id){
-        pessoaService.deleteAllById(id);
+        service.deleteAllById(id);
     }
 
-    @PutMapping("/v1/pessoa")
+    @PutMapping("/{id}")
     public Pessoa updatePessoa (@RequestBody Pessoa pessoa){
-        return pessoaService.save(pessoa);
+        return service.save(pessoa);
     }
 
-    @GetMapping("/v1/filtro")
+    @GetMapping("/filtro")
     public List<Pessoa> findPessoaNomeContains(@RequestParam String nome){
-       return pessoaService.findByNomeContains(nome);
+       return service.findByNomeContains(nome);
     }
-
 }
 

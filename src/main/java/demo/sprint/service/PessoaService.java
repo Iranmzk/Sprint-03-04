@@ -2,13 +2,13 @@ package demo.sprint.service;
 
 import demo.sprint.configuration.ApiRequestException;
 import demo.sprint.model.Pessoa;
+import demo.sprint.model.PessoaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import demo.sprint.repository.PessoaRepositorio;
 
 
 import java.util.List;
-
 
 @Service
 public class PessoaService {
@@ -24,9 +24,11 @@ public class PessoaService {
         return repositorio.save(pessoa);
     }
 
-    public Pessoa findById(String id){
-        return repositorio.findById(id)
+    public PessoaDTO findById(String id){
+        Pessoa pessoa = repositorio.findById(id)
                 .orElseThrow(() -> new ApiRequestException(id));
+        PessoaDTO dto = new PessoaDTO(pessoa);
+        return dto;
     }
 
     public List<Pessoa> findAll(){

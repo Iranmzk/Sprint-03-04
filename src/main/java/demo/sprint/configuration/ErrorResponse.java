@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class ErrorResponse {
-    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
     private List<ErrorObject> error;
 }
