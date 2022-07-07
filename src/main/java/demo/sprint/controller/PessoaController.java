@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +29,7 @@ public class PessoaController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public PessoaResponseSenha save(@Valid @RequestBody PessoaRequest pessoaRequest){
+    public PessoaResponseSenha save(@RequestBody PessoaRequest pessoaRequest){
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
     @GetMapping("/pessoa/{id}")
@@ -70,8 +69,8 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public PessoaResponse updatePessoa (@PathVariable String id,@Valid @RequestBody PessoaRequest pessoaRequest){
-        return PessoaMapper.pessoaResponse(service.att(id, PessoaMapper.requestPessoa(pessoaRequest)));
+    public PessoaResponseSenha updatePessoa (@PathVariable String id,@RequestBody PessoaRequest pessoaRequest){
+        return PessoaMapper.pessoaResponseSenha(service.att(id, PessoaMapper.requestPessoa(pessoaRequest)));
     }
 
     @GetMapping("/filtro")

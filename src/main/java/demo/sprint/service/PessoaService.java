@@ -13,8 +13,7 @@ import java.util.List;
 public class PessoaService {
 
     private PessoaRepositorio repositorio;
-
-     @Autowired
+    @Autowired
     public PessoaService (PessoaRepositorio repositorio){
         this.repositorio = repositorio;
     }
