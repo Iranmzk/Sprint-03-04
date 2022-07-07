@@ -3,6 +3,7 @@ package demo.sprint.configuration.exception;
 
 import demo.sprint.configuration.exception.errorobject.ErrorObject;
 import demo.sprint.configuration.exception.errorresponse.ErrorResponse;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,7 +19,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(ApiNotFoundException.class)
     @ResponseStatus (NOT_FOUND)
-    public ErrorResponse handleApiRequestException(ApiNotFoundException e) {
+    public ErrorResponse handleApiRequestExceptionNotFound(ApiNotFoundException e) {
         return  ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .error(List.of(ErrorObject.builder()
@@ -29,6 +30,18 @@ public class ApiExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus (METHOD_NOT_ALLOWED)
+    public ErrorResponse methodArgumentNotValidException(HttpRequestMethodNotSupportedException exception) {
+        return ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .error(List.of(ErrorObject.builder()
+                        .message(exception.getMessage())
+                        .field(METHOD_NOT_ALLOWED.name())
+                        .parameter(exception.getClass().getSimpleName())
+                        .build()))
+                .build();
+    }
     @ExceptionHandler(Exception.class)
     @ResponseStatus (INTERNAL_SERVER_ERROR)
     public ErrorResponse handleException(Exception e) {
@@ -37,18 +50,6 @@ public class ApiExceptionHandler {
                 .error(List.of(ErrorObject.builder()
                         .message(e.getMessage())
                         .field(INTERNAL_SERVER_ERROR.name())
-                        .parameter(e.getClass().getSimpleName())
-                        .build()))
-                .build();
-    }
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus (METHOD_NOT_ALLOWED)
-    public ErrorResponse methodArgumentNotValidException(Exception e) {
-        return ErrorResponse.builder()
-                .timestamp(LocalDateTime.now())
-                .error(List.of(ErrorObject.builder()
-                        .message(e.getMessage())
-                        .field(METHOD_NOT_ALLOWED.name())
                         .parameter(e.getClass().getSimpleName())
                         .build()))
                 .build();

@@ -29,7 +29,7 @@ public class PessoaController {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(code = HttpStatus.CREATED)
     public PessoaResponseSenha updatePessoa (@PathVariable @Valid String id,@RequestBody PessoaRequest pessoaRequest){
         return PessoaMapper.pessoaResponseSenha(service.att(id, PessoaMapper.requestPessoa(pessoaRequest)));
     }
