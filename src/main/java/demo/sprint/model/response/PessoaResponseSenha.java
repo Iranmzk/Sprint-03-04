@@ -5,15 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 @Data
-@Builder
+@Document
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
-public class PessoaResponse {
-        private String id;
-        private String nome;
-        private String sobrenome;
-        private Integer idade;
-        private String email;
-        }
+@Builder
+public class PessoaResponseSenha {
+    private String id;
+    private String nome;
+    private String sobrenome;
+    private Integer idade;
+    private String email;
+    private String senha;
+}

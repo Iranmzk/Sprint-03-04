@@ -1,6 +1,6 @@
-package demo.sprint.configuration.errorresponse;
+package demo.sprint.configuration.exception.errorresponse;
 
-import demo.sprint.configuration.errorobject.ErrorObject;
+import demo.sprint.configuration.exception.errorobject.ErrorObject;
 import lombok.*;
 
 import java.time.LocalDateTime;

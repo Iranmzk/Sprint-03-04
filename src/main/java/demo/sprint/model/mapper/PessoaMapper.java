@@ -3,6 +3,7 @@ package demo.sprint.model.mapper;
 import demo.sprint.model.Pessoa;
 import demo.sprint.model.request.PessoaRequest;
 import demo.sprint.model.response.PessoaResponse;
+import demo.sprint.model.response.PessoaResponseSenha;
 
 public class PessoaMapper {
     public static Pessoa requestPessoa(PessoaRequest pessoaRequest){
@@ -16,8 +17,8 @@ public class PessoaMapper {
                 .build();
     }
 
-    public static PessoaResponse pessoaResponseSenha(Pessoa pessoa){
-        return PessoaResponse.builder()
+    public static PessoaResponseSenha pessoaResponseSenha(Pessoa pessoa){
+        return PessoaResponseSenha.builder()
                 .id(pessoa.getId())
                 .nome(pessoa.getNome())
                 .sobrenome(pessoa.getSobrenome())

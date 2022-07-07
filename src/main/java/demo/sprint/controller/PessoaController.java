@@ -5,6 +5,7 @@ import demo.sprint.model.Pessoa;
 import demo.sprint.model.mapper.PessoaMapper;
 import demo.sprint.model.request.PessoaRequest;
 import demo.sprint.model.response.PessoaResponse;
+import demo.sprint.model.response.PessoaResponseSenha;
 import demo.sprint.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class PessoaController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public PessoaResponse save(@Valid @RequestBody PessoaRequest pessoaRequest){
+    public PessoaResponseSenha save(@Valid @RequestBody PessoaRequest pessoaRequest){
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
     @GetMapping("/pessoa/{id}")
@@ -39,7 +40,7 @@ public class PessoaController {
     }
 
     @GetMapping("/admin")
-    public List<PessoaResponse> findAll(){
+    public List<PessoaResponseSenha> findAll(){
         return service.findAll()
                 .stream()
                 .map(PessoaMapper::pessoaResponseSenha)
@@ -69,21 +70,16 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public Pessoa updatePessoa (@PathVariable String id,@RequestBody Pessoa pessoa){
-        service.findById(id);
-        Pessoa.builder()
-                        .nome(pessoa.getNome())
-                        .sobrenome(pessoa.getSobrenome())
-                        .email(pessoa.getEmail())
-                        .idade(pessoa.getIdade())
-                        .senha(pessoa.getSenha())
-        .build();
-        return service.save(pessoa);
+    public PessoaResponse updatePessoa (@PathVariable String id,@Valid @RequestBody PessoaRequest pessoaRequest){
+        return PessoaMapper.pessoaResponse(service.att(id, PessoaMapper.requestPessoa(pessoaRequest)));
     }
 
     @GetMapping("/filtro")
-    public List<Pessoa> findPessoaNomeContains(@RequestParam String nome){
-       return service.findByNomeContains(nome);
+    public List<PessoaResponse> findPessoaNomeContains(@RequestParam String nome){
+       return service.findByNomeContains(nome)
+               .stream()
+               .map(PessoaMapper::pessoaResponse)
+               .toList();
     }
 }
 

@@ -1,8 +1,8 @@
-package demo.sprint.configuration;
+package demo.sprint.configuration.exception;
 
 
-import demo.sprint.configuration.errorobject.ErrorObject;
-import demo.sprint.configuration.errorresponse.ErrorResponse;
+import demo.sprint.configuration.exception.errorobject.ErrorObject;
+import demo.sprint.configuration.exception.errorresponse.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
