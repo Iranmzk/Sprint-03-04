@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document
 public class PessoaResponse {
-        private String id;
         private String nome;
         private String sobrenome;
         private Integer idade;

@@ -29,7 +29,6 @@ public class PessoaMapper {
     }
     public static PessoaResponse pessoaResponse(Pessoa pessoa){
         return PessoaResponse.builder()
-                .id(pessoa.getId())
                 .nome(pessoa.getNome())
                 .sobrenome(pessoa.getSobrenome())
                 .idade(pessoa.getIdade())

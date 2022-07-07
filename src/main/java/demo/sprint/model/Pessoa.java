@@ -1,11 +1,13 @@
 package demo.sprint.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Document
 @Data
@@ -15,9 +17,8 @@ import javax.validation.constraints.NotBlank;
 public class Pessoa {
     @Id
     private String id;
-    @NotBlank(message = "Por favor, insira um nome")
+    @NotNull(message = "Por favor, insira um nome")
     private String nome;
-    @NotBlank
     private String sobrenome;
     private String email;
     private Integer idade;
