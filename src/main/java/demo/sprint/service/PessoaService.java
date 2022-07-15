@@ -1,6 +1,7 @@
 package demo.sprint.service;
 
 import demo.sprint.configuration.exception.ApiNotFoundException;
+import demo.sprint.integration.data.DataIntegration;
 import demo.sprint.model.Pessoa;
 import demo.sprint.repository.PessoaRepositorio;
 import lombok.AllArgsConstructor;
@@ -11,10 +12,11 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PessoaService {
+//    @Autowired
+    private final PessoaRepositorio repositorio;
+    private final DataIntegration dataIntegration;
 
-    private PessoaRepositorio repositorio;
-
-    public Pessoa save(Pessoa pessoa){
+    public Pessoa save(Pessoa pessoa) {
         return repositorio.save(pessoa);
     }
 

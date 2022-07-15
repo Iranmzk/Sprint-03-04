@@ -18,7 +18,9 @@ public class PessoaRequest {
     @NotNull
     private String nome;
     private String sobrenome;
+    @NotNull
     private String email;
+    @NotNull
     private Integer idade;
     private String senha;
 }

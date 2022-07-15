@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ErrorResponse {
 //    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-private LocalDateTime timestamp;
+    private LocalDateTime timestamp;
     private List<ErrorObject> error;
 }
 
