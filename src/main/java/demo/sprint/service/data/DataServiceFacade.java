@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class DataServiceFacade {
     private final DataService dataService;
 
-    public DataServiceResponse findProduct(String usItemId){
-        return dataService.findProduct(usItemId);
-    }
+//    public DataServiceResponse findProduct(String usItemId){
+//        return dataService.findProduct(usItemId);
+//    }
 }

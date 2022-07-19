@@ -1,5 +1,6 @@
 package demo.sprint.model;
 
+import demo.sprint.integration.data.DataIntegrationResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,7 @@
 package demo.sprint.controller;
 
 
+import demo.sprint.integration.data.DataIntegrationResponse;
 import demo.sprint.model.Pessoa;
 import demo.sprint.model.mapper.PessoaMapper;
 import demo.sprint.model.request.PessoaRequest;
@@ -27,6 +28,11 @@ public class PessoaController {
     @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponseSenha save(@RequestBody @Valid PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
+    }
+    @ResponseBody
+    @GetMapping("/prod")
+    public DataIntegrationResponse getDetails(@RequestParam("usItemId") String usItemId){
+        return service.findProd(usItemId);
     }
 
     @PutMapping("/{id}")

@@ -1,14 +1,13 @@
 package demo.sprint.integration.product;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 @Component
+@AllArgsConstructor
 public class ProductIntegration {
-   @Autowired
-    RestTemplate restTemplate;
+//    private final RestTemplate restTemplate;
 
-    public ProductIntegrationResponse findProduct(String usItemId){
-        return restTemplate.getForObject("/get-details?usItemId=".concat(usItemId), ProductIntegrationResponse.class);
-    }
+//    public DataIntegrationResponse findProduct(String usItemId){
+//        return restTemplate.getForObject("/get-details?usItemId=".concat(usItemId), DataIntegrationResponse.class);
+
 }

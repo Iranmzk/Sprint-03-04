@@ -1,12 +1,11 @@
 package demo.sprint.service.product.mapper.response;
 
-import demo.sprint.integration.product.ProductIntegrationResponse;
 import demo.sprint.service.product.model.response.ProductServiceResponse;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class ProductIntegrationResponseMapper {
-    public static ProductServiceResponse prodServiceResponse (ProductIntegrationResponse response){
+    public static ProductServiceResponse prodServiceResponse (ProductServiceResponse response){
         return ProductServiceResponse.builder()
                 .usItemId(response.getUsItemId())
                 .id(response.getId())
