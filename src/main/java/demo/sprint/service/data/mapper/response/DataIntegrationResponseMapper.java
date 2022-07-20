@@ -1,15 +1,15 @@
 package demo.sprint.service.data.mapper.response;
 
-import demo.sprint.integration.data.DataIntegrationResponse;
-import demo.sprint.integration.product.ProductIntegrationResponse;
+import demo.sprint.service.data.model.response.DataServiceResponse;
+import demo.sprint.service.data.model.response.ResponseServiceProduct;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class DataIntegrationResponseMapper {
 
-    public static DataIntegrationResponse dtServiceResponse(ProductIntegrationResponse prodResponse){
-        return DataIntegrationResponse.builder()
-                .data((ProductIntegrationResponse.builder()
+    public static DataServiceResponse dtServiceResponse(ResponseServiceProduct prodResponse){
+        return DataServiceResponse.builder()
+                .data((ResponseServiceProduct.builder()
                         .usItemId(prodResponse.usItemId)
                         .id(prodResponse.getId())
                         .segment(prodResponse.getSegment())

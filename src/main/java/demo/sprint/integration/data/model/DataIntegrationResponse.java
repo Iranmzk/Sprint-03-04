@@ -1,6 +1,5 @@
-package demo.sprint.integration.data;
+package demo.sprint.integration.data.model;
 
-import demo.sprint.integration.product.ProductIntegrationResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataIntegrationResponse {
-    public ProductIntegrationResponse data;
+    public ResponseData data;
 }
-

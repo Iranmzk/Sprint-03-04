@@ -1,26 +1,23 @@
 package demo.sprint.service;
 
 import demo.sprint.configuration.exception.ApiNotFoundException;
-import demo.sprint.integration.data.DataIntegration;
-import demo.sprint.integration.data.DataIntegrationResponse;
-import demo.sprint.integration.product.ProductIntegrationResponse;
+import demo.sprint.integration.data.WalmartIntegration;
+import demo.sprint.integration.data.model.DataIntegrationResponse;
 import demo.sprint.model.Pessoa;
 import demo.sprint.repository.PessoaRepositorio;
 import demo.sprint.service.data.mapper.response.DataIntegrationResponseMapper;
-import demo.sprint.service.data.model.response.DataServiceResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
 public class PessoaService {
 //    @Autowired
     private final PessoaRepositorio repositorio;
-    private final DataIntegration dataIntegration;
+    private final WalmartIntegration walmartIntegration;
 
     public Pessoa save(Pessoa pessoa) {
         return repositorio.save(pessoa);
@@ -33,8 +30,9 @@ public class PessoaService {
         return repositorio.save(pessoaAtt);
     }
 
-    public DataIntegrationResponse findProd(String usItemId){
-        return dataIntegration.findProduct(usItemId);
+    public DataIntegrationResponse findProductIntegration(String usItemId){
+        return Optional.of(walmartIntegration.find(usItemId))
+                .orElseThrow(() -> new ApiNotFoundException(usItemId));
     }
 
     public Pessoa findById(String id){

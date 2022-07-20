@@ -1,6 +1,5 @@
 package demo.sprint.service.data;
 
-import demo.sprint.service.data.model.response.DataServiceResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class DataServiceFacade {
     private final DataService dataService;
 
-//    public DataServiceResponse findProduct(String usItemId){
-//        return dataService.findProduct(usItemId);
+//    public DataServiceResponse findProductIntegration(String usItemId){
+//        return dataService.(usItemId);
 //    }
 }

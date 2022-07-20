@@ -1,7 +1,7 @@
 package demo.sprint.controller;
 
 
-import demo.sprint.integration.data.DataIntegrationResponse;
+import demo.sprint.integration.data.model.DataIntegrationResponse;
 import demo.sprint.model.Pessoa;
 import demo.sprint.model.mapper.PessoaMapper;
 import demo.sprint.model.request.PessoaRequest;
@@ -32,7 +32,7 @@ public class PessoaController {
     @ResponseBody
     @GetMapping("/prod")
     public DataIntegrationResponse getDetails(@RequestParam("usItemId") String usItemId){
-        return service.findProd(usItemId);
+        return service.findProductIntegration(usItemId);
     }
 
     @PutMapping("/{id}")

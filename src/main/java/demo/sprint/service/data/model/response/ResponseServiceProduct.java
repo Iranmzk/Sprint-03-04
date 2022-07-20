@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DataServiceResponse {
-    public ResponseServiceProduct data;
+public class ResponseServiceProduct {
+    public String usItemId;
+    public String id;
+    public String segment;
+    public String type;
+    public String name;
 }

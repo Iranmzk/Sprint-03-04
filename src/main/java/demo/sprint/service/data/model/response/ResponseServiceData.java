@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class DataServiceResponse {
-    public ResponseServiceProduct data;
+@NoArgsConstructor
+@Builder
+public class ResponseServiceData {
+    private ResponseServiceProduct product;
 }

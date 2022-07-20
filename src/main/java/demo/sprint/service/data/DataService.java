@@ -1,7 +1,6 @@
 package demo.sprint.service.data;
 
-import demo.sprint.integration.data.DataIntegration;
-import demo.sprint.service.data.model.response.DataServiceResponse;
+import demo.sprint.integration.data.WalmartIntegration;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +8,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DataService {
 
-    private final DataIntegration dataIntegration;
+    private final WalmartIntegration walmartIntegration;
 
-//    public DataServiceResponse findProduct(String usItemId){
+//    public DataServiceResponse findProductIntegration(String usItemId){
 //        return null;
 //    }
 }
