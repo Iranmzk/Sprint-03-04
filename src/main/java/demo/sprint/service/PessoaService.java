@@ -1,54 +1,43 @@
 package demo.sprint.service;
 
 import demo.sprint.configuration.exception.ApiNotFoundException;
-import demo.sprint.integration.data.WalmartIntegration;
-import demo.sprint.integration.data.model.DataIntegrationResponse;
 import demo.sprint.model.Pessoa;
 import demo.sprint.repository.PessoaRepositorio;
-import demo.sprint.service.data.mapper.response.DataIntegrationResponseMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class PessoaService {
-//    @Autowired
-    private final PessoaRepositorio repositorio;
-    private final WalmartIntegration walmartIntegration;
+    private final PessoaRepositorio pessoaRepositorio;
 
     public Pessoa save(Pessoa pessoa) {
-        return repositorio.save(pessoa);
+        return pessoaRepositorio.save(pessoa);
     }
 
     public Pessoa att(String id, Pessoa pessoaAtt){
-        Pessoa pessoaSalva = repositorio.findById(id)
+        Pessoa pessoaSalva = pessoaRepositorio.findById(id)
                 .orElseThrow(() -> new ApiNotFoundException("Id não encontrado " + id));
         pessoaAtt.setId(pessoaSalva.getId());
-        return repositorio.save(pessoaAtt);
-    }
-
-    public DataIntegrationResponse findProductIntegration(String usItemId){
-        return Optional.of(walmartIntegration.find(usItemId))
-                .orElseThrow(() -> new ApiNotFoundException(usItemId));
+        return pessoaRepositorio.save(pessoaAtt);
     }
 
     public Pessoa findById(String id){
-        return repositorio.findById(id)
+        return pessoaRepositorio.findById(id)
                 .orElseThrow(() -> new ApiNotFoundException("Id não encontrado " + id));
     }
     public List<Pessoa> findAll(){
-        return repositorio.findAll();
+        return pessoaRepositorio.findAll();
     }
 
 
     public void deleteAllById(List<String> id){
-        repositorio.deleteAllById(id);
+        pessoaRepositorio.deleteAllById(id);
     }
 
     public List<Pessoa> findByNomeContains(String nome){
-        return repositorio.findByNomeContains(nome);
+        return pessoaRepositorio.findByNomeContains(nome);
     }
 }

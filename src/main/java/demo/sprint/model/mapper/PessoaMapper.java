@@ -4,7 +4,9 @@ import demo.sprint.model.Pessoa;
 import demo.sprint.model.request.PessoaRequest;
 import demo.sprint.model.response.PessoaResponse;
 import demo.sprint.model.response.PessoaResponseSenha;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class PessoaMapper {
     public static Pessoa requestPessoa(PessoaRequest pessoaRequest){
         return Pessoa.builder()

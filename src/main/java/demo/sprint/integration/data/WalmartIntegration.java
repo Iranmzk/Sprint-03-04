@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class WalmartIntegration {
     private RestTemplate restTemplate;
 
-    public DataIntegrationResponse find(String usItemId){
+    public DataIntegrationResponse findProductDetails(String usItemId){
         return restTemplate.getForObject("/products/v3/get-details?usItemId=".concat(usItemId), DataIntegrationResponse.class);
     }
 }

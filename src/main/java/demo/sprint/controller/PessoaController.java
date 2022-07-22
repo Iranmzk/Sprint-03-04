@@ -1,13 +1,16 @@
 package demo.sprint.controller;
 
 
-import demo.sprint.integration.data.model.DataIntegrationResponse;
 import demo.sprint.model.Pessoa;
 import demo.sprint.model.mapper.PessoaMapper;
 import demo.sprint.model.request.PessoaRequest;
 import demo.sprint.model.response.PessoaResponse;
 import demo.sprint.model.response.PessoaResponseSenha;
+import demo.sprint.model.walmartEntity.ProductEntity;
 import demo.sprint.service.PessoaService;
+import demo.sprint.service.data.DataService;
+import demo.sprint.service.data.DataServiceFacade;
+import demo.sprint.service.data.model.response.ResponseServiceProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,17 +26,34 @@ import java.util.List;
 @RequestMapping("/v1/sprint03")
 public class PessoaController {
     private PessoaService service;
+    private DataService dataService;
+    private DataServiceFacade facade;
 
     @PostMapping("/pessoas")
     @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponseSenha save(@RequestBody @Valid PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
-    @ResponseBody
+
     @GetMapping("/prod")
-    public DataIntegrationResponse getDetails(@RequestParam("usItemId") String usItemId){
-        return service.findProductIntegration(usItemId);
+    public ResponseServiceProduct getDetails(@RequestParam @Valid String usItemId){
+        return dataService.findProductIntegration(usItemId);
     }
+
+    @GetMapping("/search")
+    public ProductEntity search(@RequestParam @Valid String usItemId){
+        return dataService.findProductIntegration1(usItemId);
+    }
+
+    @PostMapping("/prod/save")
+    public ProductEntity save(@RequestBody ProductEntity entity){
+        return dataService.save(entity);
+    }
+
+//    @GetMapping("/prod/search")
+//    public ProductEntity findById(@PathVariable String usItemId) {
+//        return dataService.findByUsItemId(usItemId);
+//    }
 
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
