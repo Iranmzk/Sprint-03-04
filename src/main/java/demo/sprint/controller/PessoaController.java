@@ -6,11 +6,9 @@ import demo.sprint.model.mapper.PessoaMapper;
 import demo.sprint.model.request.PessoaRequest;
 import demo.sprint.model.response.PessoaResponse;
 import demo.sprint.model.response.PessoaResponseSenha;
-import demo.sprint.model.walmartEntity.ProductEntity;
 import demo.sprint.service.PessoaService;
 import demo.sprint.service.data.DataService;
 import demo.sprint.service.data.DataServiceFacade;
-import demo.sprint.service.data.model.response.ResponseServiceProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,26 +32,6 @@ public class PessoaController {
     public PessoaResponseSenha save(@RequestBody @Valid PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
-
-    @GetMapping("/prod")
-    public ResponseServiceProduct getDetails(@RequestParam @Valid String usItemId){
-        return dataService.findProductIntegration(usItemId);
-    }
-
-    @GetMapping("/search")
-    public ProductEntity search(@RequestParam @Valid String usItemId){
-        return dataService.findProductIntegration1(usItemId);
-    }
-
-    @PostMapping("/prod/save")
-    public ProductEntity save(@RequestBody ProductEntity entity){
-        return dataService.save(entity);
-    }
-
-//    @GetMapping("/prod/search")
-//    public ProductEntity findById(@PathVariable String usItemId) {
-//        return dataService.findByUsItemId(usItemId);
-//    }
 
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)

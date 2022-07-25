@@ -10,6 +10,7 @@ import demo.sprint.service.data.model.response.ResponseServiceProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,7 +29,9 @@ public class DataService {
         return Optional.of(repository.findById(id))
                 .orElseThrow(() -> new ApiNotFoundException(id));
     }
-//BANCO DE DADOS SEM UTILIDADE, POIS BUSCA DIRETO NA INTEGRAÇÃO
+/*
+BUSCA DIRETO NA INTEGRAÇÃO
+*/
     public ResponseServiceProduct findProductIntegration(String usItemId){
         return Optional.of(integration.findProductDetails(usItemId))
                 .map(DataServiceResponseMapper::toIntResponse)
@@ -37,9 +40,13 @@ public class DataService {
                 .orElseThrow(() -> new ApiNotFoundException("ID NÃO ENCONTRADO:" + usItemId));
     }
 
-    public ProductEntity findProductIntegration1(String usItemId){
+    public ProductEntity findAllProd(String usItemId){
         return repository.findById(usItemId)
                 .orElseThrow(() -> new ApiNotFoundException("ID NÃO ENCONTRADO:" + usItemId));
+    }
+
+    public void deleteProdById(List<String> usItemId){
+        repository.deleteAllById(usItemId);
     }
 
 }
