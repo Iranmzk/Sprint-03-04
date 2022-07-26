@@ -12,11 +12,17 @@ import java.util.List;
 public class DataServiceFacade {
 
     private DataService service;
-
+/*
+BUSCA NO BANCO DE DADOS, SE NÃO ACHAR BUSCA NA INTEGRAÇÃO.
+ */
     public ResponseServiceProduct findProductDetails(String usItemId){
         return service.findByUsItemId(usItemId)
                 .map(ProductEntityResponseMapper::toProductEntity)
                 .orElseGet(() -> service.findProductIntegration(usItemId));
+    }
+
+    public List<ResponseServiceProduct> findAllProd(){
+        return service.findAllProd();
     }
 
     public void deleteProdById(List<String> usItemId){

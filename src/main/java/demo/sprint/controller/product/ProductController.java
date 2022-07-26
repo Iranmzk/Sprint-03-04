@@ -21,7 +21,12 @@ public class ProductController {
     public ProductControllerResponse getProd(@RequestParam String usItemId) {
         return facade.findProd(usItemId);
     }
+    @GetMapping("/all")
+    public List<ProductControllerResponse> findAll(){
+        return facade.findAllProd();
+    }
     @PostMapping("save")
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductEntity save(@RequestBody ProductEntity entity) {
         return service.save(entity);
     }

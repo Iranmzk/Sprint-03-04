@@ -7,8 +7,6 @@ import demo.sprint.model.request.PessoaRequest;
 import demo.sprint.model.response.PessoaResponse;
 import demo.sprint.model.response.PessoaResponseSenha;
 import demo.sprint.service.PessoaService;
-import demo.sprint.service.data.DataService;
-import demo.sprint.service.data.DataServiceFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +22,6 @@ import java.util.List;
 @RequestMapping("/v1/sprint03")
 public class PessoaController {
     private PessoaService service;
-    private DataService dataService;
-    private DataServiceFacade facade;
 
     @PostMapping("/pessoas")
     @ResponseStatus(HttpStatus.CREATED)

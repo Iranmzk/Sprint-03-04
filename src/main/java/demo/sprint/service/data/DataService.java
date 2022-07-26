@@ -21,18 +21,22 @@ public class DataService {
 
     private WalmartRepository repository;
 
-    public ProductEntity save (ProductEntity prod) {
+    public ProductEntity save(ProductEntity prod) {
         return repository.save(prod);
     }
 
-    public Optional<ProductEntity> findByUsItemId(String id){
+    /*
+    BUSCA APENAS NO BANCO DE DADOS
+     */
+    public Optional<ProductEntity> findByUsItemId(String id) {
         return Optional.of(repository.findById(id))
                 .orElseThrow(() -> new ApiNotFoundException(id));
     }
-/*
-BUSCA DIRETO NA INTEGRAÇÃO
-*/
-    public ResponseServiceProduct findProductIntegration(String usItemId){
+
+    /*
+    BUSCA APENAS NA INTEGRAÇÃO
+    */
+    public ResponseServiceProduct findProductIntegration(String usItemId) {
         return Optional.of(integration.findProductDetails(usItemId))
                 .map(DataServiceResponseMapper::toIntResponse)
                 .map(repository::save)
@@ -40,14 +44,14 @@ BUSCA DIRETO NA INTEGRAÇÃO
                 .orElseThrow(() -> new ApiNotFoundException("ID NÃO ENCONTRADO:" + usItemId));
     }
 
-    public ProductEntity findAllProd(String usItemId){
-        return repository.findById(usItemId)
-                .orElseThrow(() -> new ApiNotFoundException("ID NÃO ENCONTRADO:" + usItemId));
+    public List<ResponseServiceProduct> findAllProd(){
+        return repository.findAll()
+                .stream()
+                .map(ProductEntityResponseMapper::toProductEntity)
+                .toList();
     }
 
-    public void deleteProdById(List<String> usItemId){
+    public void deleteProdById(List<String> usItemId) {
         repository.deleteAllById(usItemId);
     }
-
 }
-
