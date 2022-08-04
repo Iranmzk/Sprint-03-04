@@ -9,6 +9,11 @@ import java.util.List;
 
 @Repository
 public interface PessoaRepositorio extends MongoRepository<Pessoa,String> {
+    /**
+     * Find all Pessoa objects whose nome field contains the given string.
+     *
+     * @param nome The name of the method parameter.
+     * @return List<Pessoa>
+     */
     List<Pessoa> findByNomeContains(String nome);
-     boolean existEmail(String email);
 }

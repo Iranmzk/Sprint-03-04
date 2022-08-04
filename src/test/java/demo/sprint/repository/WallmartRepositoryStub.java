@@ -6,6 +6,18 @@ import demo.sprint.integration.data.model.ResponseProduct;
 
 public class WallmartRepositoryStub {
 
+    /**
+     * It creates a DataIntegrationResponse object with the following fields:
+     * - data
+     *     - product
+     *         - usItemId
+     *         - id
+     *         - segment
+     *         - type
+     *         - name
+     *
+     * @return A DataIntegrationResponse object.
+     */
     static DataIntegrationResponse DataIntegrationResponseExpected(){
         return DataIntegrationResponse.builder()
                 .data(ResponseData.builder()

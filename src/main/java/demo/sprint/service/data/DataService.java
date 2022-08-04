@@ -28,14 +28,24 @@ public class DataService {
     /*
     BUSCA APENAS NO BANCO DE DADOS
      */
+    /**
+     * If the product exists, return it, otherwise throw an exception.
+     *
+     * @param id The id of the product you want to find.
+     * @return Optional<ProductEntity>
+     */
     public Optional<ProductEntity> findByUsItemId(String id) {
         return Optional.of(repository.findById(id))
                 .orElseThrow(() -> new ApiNotFoundException(id));
     }
 
-    /*
-    BUSCA APENAS NA INTEGRAÇÃO
-    */
+    /**
+     * It calls the integration service, maps the response to a new object, saves it to the database, and then maps it to
+     * another object.
+     *
+     * @param usItemId The ID of the product you want to find.
+     * @return ResponseServiceProduct
+     */
     public ResponseServiceProduct findProductIntegration(String usItemId) {
         return Optional.of(integration.findProductDetails(usItemId))
                 .map(DataServiceResponseMapper::toIntResponse)
