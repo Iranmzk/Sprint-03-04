@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 @Component
 @AllArgsConstructor
@@ -27,11 +26,10 @@ public class ControllerFacade {
         return facade.findAllProd()
                 .stream()
                 .map(ProductControllerResponseMapper::toControllerResponse)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void deleteProdById(List<String> usItemId){
         facade.deleteProdById(usItemId);
     }
-
 }

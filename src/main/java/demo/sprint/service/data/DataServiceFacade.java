@@ -1,5 +1,6 @@
 package demo.sprint.service.data;
 
+import demo.sprint.model.walmartEntity.ProductEntity;
 import demo.sprint.service.data.mapper.response.ProductEntityResponseMapper;
 import demo.sprint.service.data.model.response.ResponseServiceProduct;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,9 @@ BUSCA NO BANCO DE DADOS, SE NÃO ACHAR BUSCA NA INTEGRAÇÃO.
 
     public void deleteProdById(List<String> usItemId){
         service.deleteProdById(usItemId);
+    }
+
+    public ProductEntity save(ProductEntity prod){
+        return service.save(prod);
     }
 }

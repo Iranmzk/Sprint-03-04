@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PessoaRepositorio extends MongoRepository<Pessoa,String> {
     List<Pessoa> findByNomeContains(String nome);
+     boolean existEmail(String email);
 }

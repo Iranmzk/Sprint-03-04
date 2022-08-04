@@ -14,8 +14,8 @@ public class WalmartIntegration {
         return restTemplate.getForObject("/products/v3/get-details?usItemId=".concat(usItemId), DataIntegrationResponse.class);
     }
 
-    public DataIntegrationResponse findTest(String catId){
-        return restTemplate.getForObject("/products/v2/list?cat_id=".concat(catId),DataIntegrationResponse.class);
-    }
+//    public DataIntegrationResponse findTest(String catId){
+//        return restTemplate.getForObject("/products/v2/list?cat_id=".concat(catId),DataIntegrationResponse.class);
+//    }
 
 }
