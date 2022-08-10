@@ -1,8 +1,8 @@
 package demo.sprint.repository;
 
-import demo.sprint.integration.data.model.DataIntegrationResponse;
-import demo.sprint.integration.data.model.ResponseData;
-import demo.sprint.integration.data.model.ResponseProduct;
+import demo.sprint.integration.model.DataIntegrationResponse;
+import demo.sprint.integration.model.ResponseData;
+import demo.sprint.integration.model.ResponseProduct;
 
 public class WallmartRepositoryStub {
 

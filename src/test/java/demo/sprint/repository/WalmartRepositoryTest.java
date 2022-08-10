@@ -2,21 +2,18 @@ package demo.sprint.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import demo.sprint.integration.data.WalmartIntegration;
+import demo.sprint.integration.walmart.WalmartIntegration;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static demo.sprint.repository.WallmartRepositoryStub.DataIntegrationResponseExpected;
 import static demo.sprint.repository.WallmartRepositoryStub.prodIntegrationResponse;
@@ -28,11 +25,7 @@ import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 // Telling Spring to use the `WalmartIntegration` class as the configuration class.
 @ContextConfiguration(classes = WalmartIntegration.class)
 class WalmartRepositoryTest {
-
-    // Injecting the mock object into the class under test.
-    @InjectMocks
     private WalmartIntegration walmartIntegrationation;
-    // Creating a mock server.
     private static ClientAndServer server;
 
     /**
@@ -57,6 +50,7 @@ class WalmartRepositoryTest {
     @BeforeEach
     void setUpRest() {
         var template = new RestTemplateBuilder()
+                // It sets up the RestTemplateBuilder to use the port of the server.
                 .rootUri(String.format("http://localhost:%d", server.getPort()))
                 .build();
 
@@ -64,7 +58,7 @@ class WalmartRepositoryTest {
     }
 
     @Test
-    @DisplayName("Testando se encontra item banco de dados")
+    @DisplayName("Testando se encontra item na integração")
     void WhenFindProductExpect() throws JsonProcessingException {
         var expect = DataIntegrationResponseExpected();
 

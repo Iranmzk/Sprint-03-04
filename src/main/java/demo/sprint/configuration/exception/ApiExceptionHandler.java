@@ -1,6 +1,7 @@
 package demo.sprint.configuration.exception;
 
 
+import demo.sprint.configuration.exception.apinotfoundexception.ApiNotFoundException;
 import demo.sprint.configuration.exception.errorobject.ErrorObject;
 import demo.sprint.configuration.exception.errorresponse.ErrorResponse;
 import org.springframework.http.converter.HttpMessageNotReadableException;

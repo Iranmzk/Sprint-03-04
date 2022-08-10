@@ -1,6 +1,6 @@
 package demo.sprint.service;
 
-import demo.sprint.configuration.exception.ApiNotFoundException;
+import demo.sprint.configuration.exception.apinotfoundexception.ApiNotFoundException;
 import demo.sprint.model.Pessoa;
 import demo.sprint.repository.PessoaRepositorio;
 import lombok.AllArgsConstructor;
