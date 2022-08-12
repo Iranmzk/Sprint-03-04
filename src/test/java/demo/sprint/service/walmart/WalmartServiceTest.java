@@ -47,7 +47,7 @@ class WalmartServiceTest {
                 .thenReturn(responseEntity);
 
         var actual = walmartService.findByUsItemId("54457638");
-        assertEquals(expectedEntity,actual);
+        assertEquals(expectedEntity, actual);
     }
 
     /**
@@ -77,7 +77,7 @@ class WalmartServiceTest {
     @Disabled
     @DisplayName("Retornando uma lista de produtos")
     void retornarListaDeProdutos() {
-//        var expectedServiceResponse = WalmartServiceStubListResponse();
+//        var expectedServiceResponse = WalmartServiceResponseExpectedStub();
 //        var ProductEntity = WalmartentityStubListResponse();
 //        when(repository.findAll()).thenReturn(ProductEntity);
 //        var actual = walmartService.findAllProd();
@@ -87,33 +87,20 @@ class WalmartServiceTest {
 
     // Testing if the method findProductIntegration is throwing an exception.
     @Test
-    @DisplayName("Retornando um bad request (é para quebrar?)")
-    void whenNotFindProductIntegrationBadRequest(){
+    @DisplayName("Retornando um bad request")
+    void whenNotFindProductIntegrationBadRequest() {
 
-        var expectedServiceResponse = WalmartServiceResponseExpectedStub();
-        var ProductEntity = productEntityStub();
         var expectedIntegrationResponse = WalmartServiceStubBadRequest();
 
-        when(integration.findProductDetails("544576388")).thenReturn(expectedIntegrationResponse);
+        when(integration.findProductDetails("13")).thenReturn(expectedIntegrationResponse);
 
-        when(repository.save(ProductEntity)).thenReturn(ProductEntity);
+// Testing if the method findProductIntegration is throwing an exception.
+        Exception exception = assertThrows(ApiNotFoundException.class,
+                () -> walmartService.findProductIntegration("13"));
 
-        var actual = walmartService.findProductIntegration("54457638");
+        var expectativa = "Please,insert a valid usItemId";
+        var actual = exception.getMessage();
 
-        assertEquals(expectedServiceResponse, actual);
+        assertEquals(actual, expectativa);
     }
 }
-//        var integrationBadRequest = WalmartServiceStubBadRequest();
-//
-//        when(integration.findProductDetails("54457638G")).thenReturn(integrationBadRequest);
-
-    // Testing if the method findProductIntegration is throwing an exception.
-//        Exception exception = assertThrows(ApiNotFoundException.class,
-//                () -> walmartService.findProductIntegration("54457638G"));
-//
-//        var expected = "Please,insert a valid usItemId";
-//
-//        var actual = exception.getMessage();
-//
-//        assertEquals(actual, expected);
-
