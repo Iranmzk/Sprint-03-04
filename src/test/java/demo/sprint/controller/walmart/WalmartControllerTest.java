@@ -19,12 +19,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class WalmartControllerTest {
 
     // Main entry point for server-side Spring MVC test support.
-        @Autowired
+    @Autowired
     private MockMvc mvc;
 
-    // Mocking the ControllerFacade class.
+    // Mocking the ControllerFacadeWalmart class.
     @MockBean
-    private static ControllerFacade facade;
+    private static ControllerFacadeWalmart facade;
 
     @Test
     void findProductDetails() throws Exception {

@@ -1,8 +1,8 @@
 package demo.sprint.service.walmart;
 
-import demo.sprint.integration.model.DataIntegrationResponse;
-import demo.sprint.integration.model.ResponseData;
-import demo.sprint.integration.model.ResponseProduct;
+import demo.sprint.integration.walmart.model.DataIntegrationResponse;
+import demo.sprint.integration.walmart.model.ResponseData;
+import demo.sprint.integration.walmart.model.ResponseProduct;
 import demo.sprint.model.walmartentity.ProductEntity;
 import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 

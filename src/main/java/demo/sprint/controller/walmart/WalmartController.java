@@ -13,12 +13,16 @@ import java.util.List;
 @AllArgsConstructor
 public class WalmartController {
 
-    private ControllerFacade facade;
+    private ControllerFacadeWalmart facade;
 
-    //TODO: JUNTAR OS DOIS ENDPOINTS DE GET - (OK)
-    @GetMapping("/stock")
+    @GetMapping("/stock-walmart")
     public ProductControllerResponse findProductDetails(@RequestParam @Valid String usItemId) {
         return facade.findProductDetails(usItemId);
+    }
+
+    @GetMapping("/stock-overall")
+    public List<ProductControllerResponse> findAllProduct() {
+        return facade.findAllProd();
     }
 
     @DeleteMapping("/delete")

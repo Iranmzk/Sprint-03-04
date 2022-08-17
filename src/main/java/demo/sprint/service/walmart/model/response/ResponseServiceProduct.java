@@ -1,5 +1,6 @@
 package demo.sprint.service.walmart.model.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,6 @@ public class ResponseServiceProduct {
     public String segment;
     public String type;
     public String name;
+    @JsonProperty("shortDescription")
+    public String description;
 }

@@ -1,11 +1,14 @@
-package demo.sprint.controller.walmart;
+package demo.sprint.service.walmart.facade;
 
-import demo.sprint.controller.walmart.model.response.ProductControllerResponse;
+import demo.sprint.model.walmartentity.ProductEntity;
+import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 
-public class WalmartControllerStub {
+import java.util.Optional;
 
-    static ProductControllerResponse WalmartControllerStubResponse(){
-        return  ProductControllerResponse.builder()
+public class WalmartServiceFacadeStub {
+
+    static Optional<ProductEntity> WalmartServiceStubResponse(){
+        return  Optional.ofNullable(ProductEntity.builder()
                 .usItemId("54457638")
                 .id("528477X1YAO4")
                 .segment("Gift Cards & Gift Certificates")
@@ -13,11 +16,11 @@ public class WalmartControllerStub {
                 .name("Birthday Walmart Gift Card")
                 .description("Convenient for you and fun for them," +
                         " the Walmart Gift Card makes a great gift for anyone.")
-                .build();
+                .build());
     }
 
-    static ProductControllerResponse WalmartControllerExpectedStub(){
-        return ProductControllerResponse.builder()
+    static ResponseServiceProduct WalmartServiceResponseExpectedStub(){
+        return ResponseServiceProduct.builder()
                 .usItemId("54457638")
                 .id("528477X1YAO4")
                 .segment("Gift Cards & Gift Certificates")

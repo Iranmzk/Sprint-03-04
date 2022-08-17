@@ -28,6 +28,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mock-server:mockserver-netty:5.13.2'
+//	testImplementation "com.github.tomakehurst:wiremock-jre8:2.33.2"
 }
 
 tasks.named('test') {

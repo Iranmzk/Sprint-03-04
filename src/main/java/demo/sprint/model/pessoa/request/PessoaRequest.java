@@ -1,4 +1,4 @@
-package demo.sprint.model.request;
+package demo.sprint.model.pessoa.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

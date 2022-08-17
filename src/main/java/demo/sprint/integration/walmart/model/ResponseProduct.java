@@ -1,20 +1,19 @@
-package demo.sprint.model.walmartentity;
+package demo.sprint.integration.walmart.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("Walmart")
-public class ProductEntity {
-    @Id
+@Builder
+public class ResponseProduct {
+    @NotNull
     public String usItemId;
     public String id;
     public String segment;

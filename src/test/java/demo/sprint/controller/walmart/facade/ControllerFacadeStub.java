@@ -1,8 +1,9 @@
-package demo.sprint.controller.walmart;
+package demo.sprint.controller.walmart.facade;
 
 import demo.sprint.controller.walmart.model.response.ProductControllerResponse;
+import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 
-public class WalmartControllerStub {
+public class ControllerFacadeStub {
 
     static ProductControllerResponse WalmartControllerStubResponse(){
         return  ProductControllerResponse.builder()
@@ -16,8 +17,8 @@ public class WalmartControllerStub {
                 .build();
     }
 
-    static ProductControllerResponse WalmartControllerExpectedStub(){
-        return ProductControllerResponse.builder()
+    static ResponseServiceProduct WalmartControllerExpectedStub(){
+        return ResponseServiceProduct.builder()
                 .usItemId("54457638")
                 .id("528477X1YAO4")
                 .segment("Gift Cards & Gift Certificates")

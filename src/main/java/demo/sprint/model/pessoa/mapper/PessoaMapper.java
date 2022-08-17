@@ -1,9 +1,9 @@
-package demo.sprint.model.mapper;
+package demo.sprint.model.pessoa.mapper;
 
-import demo.sprint.model.Pessoa;
-import demo.sprint.model.request.PessoaRequest;
-import demo.sprint.model.response.PessoaResponse;
-import demo.sprint.model.response.PessoaResponseSenha;
+import demo.sprint.model.pessoa.Pessoa;
+import demo.sprint.model.pessoa.request.PessoaRequest;
+import demo.sprint.model.pessoa.response.PessoaResponse;
+import demo.sprint.model.pessoa.response.PessoaResponseSenha;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

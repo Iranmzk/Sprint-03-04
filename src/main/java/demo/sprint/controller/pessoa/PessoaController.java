@@ -1,12 +1,12 @@
 package demo.sprint.controller.pessoa;
 
 
-import demo.sprint.model.Pessoa;
-import demo.sprint.model.mapper.PessoaMapper;
-import demo.sprint.model.request.PessoaRequest;
-import demo.sprint.model.response.PessoaResponse;
-import demo.sprint.model.response.PessoaResponseSenha;
-import demo.sprint.service.PessoaService;
+import demo.sprint.model.pessoa.Pessoa;
+import demo.sprint.model.pessoa.mapper.PessoaMapper;
+import demo.sprint.model.pessoa.request.PessoaRequest;
+import demo.sprint.model.pessoa.response.PessoaResponse;
+import demo.sprint.model.pessoa.response.PessoaResponseSenha;
+import demo.sprint.service.pessoa.PessoaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +29,13 @@ public class PessoaController {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
 
+
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public PessoaResponseSenha updatePessoa(@PathVariable @Valid String id, @RequestBody PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.att(id, PessoaMapper.requestPessoa(pessoaRequest)));
     }
+
 
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -41,10 +43,12 @@ public class PessoaController {
         service.deleteAllById(id);
     }
 
+
     @GetMapping("/pessoa/{id}")
     public Pessoa findById(@PathVariable String id) {
         return service.findById(id);
     }
+
 
     @GetMapping("/admin")
     public List<PessoaResponseSenha> findAll() {
@@ -54,6 +58,7 @@ public class PessoaController {
                 .toList();
     }
 
+
     @GetMapping("/pessoas")
     public List<PessoaResponse> findAllPessoa() {
         return service.findAll()
@@ -62,11 +67,12 @@ public class PessoaController {
                 .toList();
     }
 
+
     @GetMapping("/create-coockie")
     public String criandoCoookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = new Cookie("cookieTest", "cookie-value");
+        cookie.getValue();
         cookie.getName();
-        cookie.getComment();
         cookie.setMaxAge(60 * 60 * 24);
         response.addCookie(cookie);
         return "cookie-recived/";

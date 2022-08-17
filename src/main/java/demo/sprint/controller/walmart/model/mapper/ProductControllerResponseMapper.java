@@ -11,6 +11,7 @@ public class ProductControllerResponseMapper {
                 .type(response.getType())
                 .segment(response.getSegment())
                 .name(response.getName())
+                .description(response.getDescription())
                 .build();
     }
 }

@@ -1,6 +1,6 @@
 package demo.sprint.controller.walmart.facade;
 
-import demo.sprint.controller.walmart.ControllerFacade;
+import demo.sprint.controller.walmart.ControllerFacadeWalmart;
 import demo.sprint.service.walmart.WalmartServiceFacade;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {ControllerFacade.class, WalmartServiceFacade.class})
-class ControllerFacadeTest {
+@ContextConfiguration(classes = {ControllerFacadeWalmart.class, WalmartServiceFacade.class})
+class ControllerFacadeAmazonWalmartTest {
 
     @InjectMocks
-    private static ControllerFacade facade;
+    private static ControllerFacadeWalmart facade;
     @Mock
     private static WalmartServiceFacade serviceFacade;
 

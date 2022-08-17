@@ -1,26 +1,21 @@
-package demo.sprint.model;
+package demo.sprint.model.pessoa.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-
-@Document
 @Data
-@Builder
-@AllArgsConstructor
+@Document
 @NoArgsConstructor
-public class Pessoa {
-    @Id
+@AllArgsConstructor
+@Builder
+public class PessoaResponseSenha {
     private String id;
-    @NotNull(message = "Por favor, insira um nome")
     private String nome;
     private String sobrenome;
-    private String email;
     private Integer idade;
+    private String email;
     private String senha;
 }

@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 @Component
 @AllArgsConstructor
-public class ControllerFacade {
-
+public class ControllerFacadeWalmart {
     private WalmartServiceFacade facade;
 
     /**
@@ -21,21 +20,21 @@ public class ControllerFacade {
      * @param usItemId The unique identifier for the product.
      * @return ProductControllerResponse
      */
-    public ProductControllerResponse findProductDetails(String usItemId){
+    public ProductControllerResponse findProductDetails(String usItemId) {
         return Stream.of(facade.findProductDetails(usItemId))
                 .map(ProductControllerResponseMapper::toControllerResponse)
                 .findFirst()
                 .orElseThrow(() -> new ApiNotFoundException("Not found"));
     }
 
-    public void deleteProdById(List<String> usItemId){
+    public void deleteProdById(List<String> usItemId) {
         facade.deleteProdById(usItemId);
     }
-}
 
-//    public List<ProductControllerResponse> findAllProd(){
-//        return facade.findAllProd()
-//                .stream()
-//                .map(ProductControllerResponseMapper::toControllerResponse)
-//                .toList();
-//    }
+    public List<ProductControllerResponse> findAllProd() {
+        return facade.findAllProd()
+                .stream()
+                .map(ProductControllerResponseMapper::toControllerResponse)
+                .toList();
+    }
+}

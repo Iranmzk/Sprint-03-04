@@ -25,7 +25,7 @@ import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 // Telling Spring to use the `WalmartIntegration` class as the configuration class.
 @ContextConfiguration(classes = WalmartIntegration.class)
 class WalmartRepositoryTest {
-    private WalmartIntegration walmartIntegrationation;
+    private WalmartIntegration walmartIntegration;
     private static ClientAndServer server;
 
     /**
@@ -54,7 +54,7 @@ class WalmartRepositoryTest {
                 .rootUri(String.format("http://localhost:%d", server.getPort()))
                 .build();
 
-        walmartIntegrationation = new WalmartIntegration(template);
+//        walmartIntegration = new WalmartIntegration(template);
     }
 
     @Test
@@ -80,7 +80,7 @@ class WalmartRepositoryTest {
         // Mocking the response of the server.
         server.when(httpRequest).respond(response);
 
-        var actual = walmartIntegrationation.findProductDetails("54457638");
+        var actual = walmartIntegration.findProductDetails("54457638");
         // Comparing the expected value with the actual value.
         assertEquals(expect, actual);
 

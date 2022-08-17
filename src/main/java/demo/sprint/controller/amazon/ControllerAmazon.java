@@ -16,7 +16,7 @@ public class ControllerAmazon {
     private final ControllerFacadeAmazon facade;
 
 
-    @GetMapping("/find")
+    @GetMapping("/stock-amazon")
     public List<ControllerResponse> findProducts(@RequestParam String name){
         return facade.findProductsDetails(name);
     }

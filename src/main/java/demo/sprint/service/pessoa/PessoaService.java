@@ -1,8 +1,8 @@
-package demo.sprint.service;
+package demo.sprint.service.pessoa;
 
 import demo.sprint.configuration.exception.apinotfoundexception.ApiNotFoundException;
-import demo.sprint.model.Pessoa;
-import demo.sprint.repository.PessoaRepositorio;
+import demo.sprint.model.pessoa.Pessoa;
+import demo.sprint.repository.PessoaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,33 +11,33 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PessoaService {
-    private final PessoaRepositorio pessoaRepositorio;
+    private final PessoaRepository pessoaRepository;
 
     public Pessoa save(Pessoa pessoa) {
-        return pessoaRepositorio.save(pessoa);
+        return pessoaRepository.save(pessoa);
     }
 
     public Pessoa att(String id, Pessoa pessoaAtt){
-        Pessoa pessoaSalva = pessoaRepositorio.findById(id)
+        Pessoa pessoaSalva = pessoaRepository.findById(id)
                 .orElseThrow(() -> new ApiNotFoundException("Id não encontrado " + id));
         pessoaAtt.setId(pessoaSalva.getId());
-        return pessoaRepositorio.save(pessoaAtt);
+        return pessoaRepository.save(pessoaAtt);
     }
 
     public Pessoa findById(String id){
-        return pessoaRepositorio.findById(id)
+        return pessoaRepository.findById(id)
                 .orElseThrow(() -> new ApiNotFoundException("Id não encontrado " + id));
     }
     public List<Pessoa> findAll(){
-        return pessoaRepositorio.findAll();
+        return pessoaRepository.findAll();
     }
 
 
     public void deleteAllById(List<String> id){
-        pessoaRepositorio.deleteAllById(id);
+        pessoaRepository.deleteAllById(id);
     }
 
     public List<Pessoa> findByNomeContains(String nome){
-        return pessoaRepositorio.findByNomeContains(nome);
+        return pessoaRepository.findByNomeContains(nome);
     }
 }

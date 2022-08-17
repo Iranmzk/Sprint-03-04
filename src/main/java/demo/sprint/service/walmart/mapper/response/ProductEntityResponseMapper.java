@@ -14,6 +14,7 @@ public class ProductEntityResponseMapper {
                 .segment(entity.getSegment())
                 .type(entity.getType())
                 .name(entity.getName())
+                .description(entity.getDescription())
                 .build();
     }
 

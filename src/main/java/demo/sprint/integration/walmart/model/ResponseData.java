@@ -1,4 +1,4 @@
-package demo.sprint.integration.model;
+package demo.sprint.integration.walmart.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ResponseProduct {
-    @NotNull
-    public String usItemId;
-    public String id;
-    public String segment;
-    public String type;
-    public String name;
+public class ResponseData {
+   @NotNull
+   private ResponseProduct product;
 }
+

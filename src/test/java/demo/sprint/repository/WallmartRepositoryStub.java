@@ -1,8 +1,8 @@
 package demo.sprint.repository;
 
-import demo.sprint.integration.model.DataIntegrationResponse;
-import demo.sprint.integration.model.ResponseData;
-import demo.sprint.integration.model.ResponseProduct;
+import demo.sprint.integration.walmart.model.DataIntegrationResponse;
+import demo.sprint.integration.walmart.model.ResponseData;
+import demo.sprint.integration.walmart.model.ResponseProduct;
 
 public class WallmartRepositoryStub {
 
@@ -27,6 +27,8 @@ public class WallmartRepositoryStub {
                                 .segment("Gift Cards & Gift Certificates")
                                 .type("Gift Cards & Certificates")
                                 .name("Birthday Walmart Gift Card")
+                                .description("Convenient for you and fun for them," +
+                                        " the Walmart Gift Card makes a great gift for anyone.")
                                 .build())
                         .build())
                 .build();
@@ -41,6 +43,8 @@ public class WallmartRepositoryStub {
                                 .segment("Gift Cards & Gift Certificates")
                                 .type("Gift Cards & Certificates")
                                 .name("Birthday Walmart Gift Card")
+                                .description("Convenient for you and fun for them," +
+                                        " the Walmart Gift Card makes a great gift for anyone.")
                                 .build())
                         .build())
                 .build();

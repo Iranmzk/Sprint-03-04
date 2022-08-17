@@ -1,4 +1,4 @@
-package demo.sprint.integration.model;
+package demo.sprint.integration.walmart.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

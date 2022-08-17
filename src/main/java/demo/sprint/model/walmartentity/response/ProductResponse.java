@@ -18,4 +18,5 @@ public class ProductResponse {
     public String segment;
     public String type;
     public String name;
+    public String shortDescription;
 }
