@@ -29,7 +29,7 @@ public class WalmartService {
     }
 
     public Page<ProductEntity> findByNameEntity(String name, Pageable pageable) {
-        return repository.findByName(name, pageable);
+        return repository.findByNameContains(name, pageable);
     }
 
     public ResponseServiceProduct findProductIntegration(String usItemId) {
@@ -43,11 +43,6 @@ public class WalmartService {
 
     public Page<ResponseServiceProduct> findAllProd(Pageable pageable){
         return repository.findAll(pageable)
-                .map(ProductEntityResponseMapper::toProductEntity);
-    }
-
-    public Page<ResponseServiceProduct> findByName(String name, Pageable pageable){
-        return repository.findByName(name,pageable)
                 .map(ProductEntityResponseMapper::toProductEntity);
     }
 
