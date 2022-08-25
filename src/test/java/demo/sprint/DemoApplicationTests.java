@@ -1,4 +1,4 @@
-package sprint3.Demo;
+package demo.sprint;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,8 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DemoApplicationTests {
 
-	@Test
-	void contextLoad(){
-	}
+    @Test
+    void contextLoad() {
+    }
 }
-//todo: Fazer classes de teste da controller e services
