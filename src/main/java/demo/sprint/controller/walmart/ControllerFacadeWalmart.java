@@ -5,6 +5,8 @@ import demo.sprint.controller.walmart.model.mapper.ProductControllerResponseMapp
 import demo.sprint.controller.walmart.model.response.ProductControllerResponse;
 import demo.sprint.service.walmart.WalmartServiceFacade;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -31,10 +33,14 @@ public class ControllerFacadeWalmart {
         facade.deleteProdById(usItemId);
     }
 
-    public List<ProductControllerResponse> findAllProd() {
-        return facade.findAllProd()
-                .stream()
-                .map(ProductControllerResponseMapper::toControllerResponse)
-                .toList();
+    public Page<ProductControllerResponse> findAllProd(Pageable pageable) {
+        return facade.findAllProd(pageable)
+                .map(ProductControllerResponseMapper::toControllerResponse);
+    }
+
+    public Page<ProductControllerResponse> findByName(String name, Pageable pageable) {
+        return facade.findByName(name, pageable)
+                .map(ProductControllerResponseMapper::toControllerResponse);
     }
 }
+

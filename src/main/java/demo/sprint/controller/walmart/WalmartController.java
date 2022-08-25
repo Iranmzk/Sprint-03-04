@@ -2,6 +2,8 @@ package demo.sprint.controller.walmart;
 
 import demo.sprint.controller.walmart.model.response.ProductControllerResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +22,14 @@ public class WalmartController {
         return facade.findProductDetails(usItemId);
     }
 
-    @GetMapping("/stock-overall")
-    public List<ProductControllerResponse> findAllProduct() {
-        return facade.findAllProd();
+    @GetMapping("/stock-walmart-overall")
+    public Page<ProductControllerResponse> findAllProduct(Pageable pageble) {
+        return facade.findAllProd(pageble);
+    }
+
+    @GetMapping("/stock-walmart/{name}")
+    public Page<ProductControllerResponse> findByName(@PathVariable("name") String name,Pageable pageable){
+        return facade.findByName(name, pageable);
     }
 
     @DeleteMapping("/delete")
