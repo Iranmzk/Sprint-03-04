@@ -2,14 +2,13 @@ package demo.sprint.service.walmart;
 
 import demo.sprint.configuration.exception.apinotfoundexception.ApiNotFoundException;
 import demo.sprint.integration.walmart.WalmartIntegration;
-import demo.sprint.repository.WalmartRepository;
-import org.junit.jupiter.api.Disabled;
+import demo.sprint.repository.walmart.WalmartRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -31,6 +30,10 @@ class WalmartServiceTest {
     @Mock
     private WalmartIntegration integration;
 
+    @AfterEach
+    void tearDown() {
+        repository.deleteAll();
+    }
 
     /**
      * The function is testing the service layer, which is responsible for calling the repository layer, which is
@@ -61,29 +64,16 @@ class WalmartServiceTest {
         var ProductEntity = productEntityStub();
         var expectedIntegrationResponse = WalmartIntegrationStubResponse();
 
-        when(integration.findProductDetails("54457638")).thenReturn(expectedIntegrationResponse);
+        when(integration.findProductDetails("54457638"))
+                .thenReturn(expectedIntegrationResponse);
 
-        when(repository.save(ProductEntity)).thenReturn(ProductEntity);
+        when(repository.save(ProductEntity))
+                .thenReturn(ProductEntity);
 
         var actual = walmartService.findProductIntegration("54457638");
 
         assertEquals(expectedServiceResponse, actual);
     }
-
-    /**
-     * A test function that tests the findAllProd() function.
-     */
-    @Test
-    @Disabled
-    @DisplayName("Retornando uma lista de produtos")
-    void retornarListaDeProdutos() {
-//        var expectedServiceResponse = WalmartServiceResponseExpectedStub();
-//        var ProductEntity = WalmartentityStubListResponse();
-//        when(repository.findAll()).thenReturn(ProductEntity);
-//        var actual = walmartService.findAllProd();
-//        assertEquals(expectedServiceResponse, actual);
-    }
-
 
     // Testing if the method findProductIntegration is throwing an exception.
     @Test
@@ -92,15 +82,18 @@ class WalmartServiceTest {
 
         var expectedIntegrationResponse = WalmartServiceStubBadRequest();
 
-        when(integration.findProductDetails("13")).thenReturn(expectedIntegrationResponse);
+        when(integration.findProductDetails("13"))
+                .thenReturn(expectedIntegrationResponse);
 
 // Testing if the method findProductIntegration is throwing an exception.
         Exception exception = assertThrows(ApiNotFoundException.class,
                 () -> walmartService.findProductIntegration("13"));
 
-        var expectativa = "Please,insert a valid usItemId";
+        var expectativa = "not found";
         var actual = exception.getMessage();
 
         assertEquals(actual, expectativa);
     }
+
+
 }

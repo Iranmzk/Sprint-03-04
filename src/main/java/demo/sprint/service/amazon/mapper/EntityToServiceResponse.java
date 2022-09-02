@@ -1,6 +1,6 @@
 package demo.sprint.service.amazon.mapper;
 
-import demo.sprint.model.amazon.AmazonEntity;
+import demo.sprint.repository.amazon.AmazonEntity;
 import demo.sprint.service.amazon.model.ProductService;
 //NOT IN USE
 public class EntityToServiceResponse {
@@ -9,6 +9,8 @@ public class EntityToServiceResponse {
                 .usItemId(product.getUsItemId())
                 .name(product.getName())
                 .price(product.getPrice())
+                .rate(product.getRate())
+                .prime(product.getPrime())
                 .build();
     }
 }

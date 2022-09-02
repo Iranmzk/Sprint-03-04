@@ -3,7 +3,7 @@ package demo.sprint.service.walmart;
 import demo.sprint.integration.walmart.model.DataIntegrationResponse;
 import demo.sprint.integration.walmart.model.ResponseData;
 import demo.sprint.integration.walmart.model.ResponseProduct;
-import demo.sprint.model.walmartentity.ProductEntity;
+import demo.sprint.repository.walmart.walmartentity.ProductEntity;
 import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 
 import java.util.Optional;
@@ -51,8 +51,6 @@ public class WalmartServiceStub {
                         " the Walmart Gift Card makes a great gift for anyone.")
                 .build();
     }
-
-
     static Optional<ProductEntity> WalmartServiceStubExpected(){
         return Optional.ofNullable(ProductEntity.builder()
                 .usItemId("54457638")

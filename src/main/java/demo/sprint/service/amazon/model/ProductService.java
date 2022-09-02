@@ -13,4 +13,6 @@ public class ProductService {
     public String usItemId;
     public String name;
     public String price;
+    public String rate;
+    public String prime;
 }

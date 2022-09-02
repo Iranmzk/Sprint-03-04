@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class WalmartController {
 
-    private ControllerFacadeWalmart facade;
+    private WalmartControllerFacade facade;
 
     @GetMapping("/stock-walmart")
     public ProductControllerResponse findProductDetails(@RequestParam @Valid String usItemId) {
@@ -28,14 +28,21 @@ public class WalmartController {
     }
 
     @GetMapping("/stock-walmart/{name}")
-    public Page<ProductControllerResponse> findByName(@PathVariable("name") String name,Pageable pageable){
-        return facade.findByName(name, pageable);
+    public List<ProductControllerResponse> findByName(@PathVariable("name") String name) {
+        return facade.findByName(name);
     }
 
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@RequestParam List<String> usItemId){
+    public void delete(@RequestParam List<String> usItemId) {
         facade.deleteProdById(usItemId);
+    }
+    @GetMapping("/custom")
+    public List<ProductControllerResponse> find(@RequestParam(required = false) String usItemId,
+                                                @RequestParam(required = false)String name,
+                                                @RequestParam(required = false)String segement,
+                                                @RequestParam(required = false)String type) {
+    return facade.find(usItemId, name, segement,type);
     }
 }
 

@@ -13,4 +13,6 @@ public class ControllerResponse {
     private String usItemId;
     private String name;
     private String price;
+    public String rate;
+    public String prime;
 }

@@ -16,6 +16,9 @@ public class IntegrationToServiceResponse {
                 .usItemId(integration.getUsItemId())
                 .name(integration.getName())
                 .price(integration.getPrice())
-                .build()).collect(Collectors.toList());
+                .rate(integration.getRate())
+                .prime(integration.getPrime())
+                .build())
+                .collect(Collectors.toList());
     }
 }

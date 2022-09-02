@@ -14,6 +14,8 @@ public class ServiceToController{
                         .usItemId(productServices.getUsItemId())
                         .name(productServices.getName())
                         .price(productServices.getPrice())
+                        .rate(productServices.getRate())
+                        .prime(productServices.getPrime())
                         .build()).collect(Collectors.toList());
     }
 }

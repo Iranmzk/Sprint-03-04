@@ -17,4 +17,9 @@ public class DocsIntegration {
     public String name;
     @JsonProperty("app_sale_price")
     public String price;
+    @JsonProperty("evaluate_rate")
+    public String rate;
+    @JsonProperty("isPrime")
+    public String prime;
+
 }

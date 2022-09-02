@@ -18,4 +18,5 @@ public class ResponseServiceProduct {
     public String name;
     @JsonProperty("shortDescription")
     public String description;
+//    public String priceInfo;
 }

@@ -22,9 +22,9 @@ class WalmartControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    // Mocking the ControllerFacadeWalmart class.
+    // Mocking the WalmartControllerFacade class.
     @MockBean
-    private static ControllerFacadeWalmart facade;
+    private static WalmartControllerFacade facade;
 
     @Test
     void findProductDetails() throws Exception {
@@ -41,10 +41,9 @@ class WalmartControllerTest {
 
         // Testing the controller.
         mvc.perform( MockMvcRequestBuilders
-                        .get("http://localhost:8080//v1/prod/stock?usItemId=54457638"))
+                        .get("http://localhost:8080//v1/prod/stock-walmart?usItemId=54457638"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(expected));
-
     }
 }

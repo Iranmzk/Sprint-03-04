@@ -1,13 +1,15 @@
 package demo.sprint.controller.pessoa;
 
 
-import demo.sprint.model.pessoa.Pessoa;
-import demo.sprint.model.pessoa.mapper.PessoaMapper;
-import demo.sprint.model.pessoa.request.PessoaRequest;
-import demo.sprint.model.pessoa.response.PessoaResponse;
-import demo.sprint.model.pessoa.response.PessoaResponseSenha;
+import demo.sprint.repository.pessoa.model.pessoa.Pessoa;
+import demo.sprint.repository.pessoa.model.pessoa.mapper.PessoaMapper;
+import demo.sprint.repository.pessoa.model.pessoa.request.PessoaRequest;
+import demo.sprint.repository.pessoa.model.pessoa.response.PessoaResponse;
+import demo.sprint.repository.pessoa.model.pessoa.response.PessoaResponseSenha;
 import demo.sprint.service.pessoa.PessoaService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,20 +24,17 @@ import java.util.List;
 @RequestMapping("/v1/sprint03")
 public class PessoaController {
     private PessoaService service;
-
     @PostMapping("/pessoas")
     @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponseSenha save(@RequestBody @Valid PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
     }
 
-
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public PessoaResponseSenha updatePessoa(@PathVariable @Valid String id, @RequestBody PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.att(id, PessoaMapper.requestPessoa(pessoaRequest)));
     }
-
 
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -49,24 +48,25 @@ public class PessoaController {
         return service.findById(id);
     }
 
-
     @GetMapping("/admin")
-    public List<PessoaResponseSenha> findAll() {
-        return service.findAll()
+    public Page<PessoaResponseSenha> findAll(Pageable pageable) {
+        return service.findAll(pageable)
+                .map(PessoaMapper::pessoaResponseSenha);
+    }
+
+    @GetMapping("/example")
+    public List<PessoaResponseSenha> getAllByExample(@RequestBody Pessoa pessoa) {
+        return service.getAllByExample(pessoa)
                 .stream()
                 .map(PessoaMapper::pessoaResponseSenha)
                 .toList();
     }
 
-
     @GetMapping("/pessoas")
-    public List<PessoaResponse> findAllPessoa() {
-        return service.findAll()
-                .stream()
-                .map(PessoaMapper::pessoaResponse)
-                .toList();
+    public Page<PessoaResponse> findAllPessoa(Pageable pageable) {
+        return service.findAll(pageable)
+                .map(PessoaMapper::pessoaResponse);
     }
-
 
     @GetMapping("/create-coockie")
     public String criandoCoookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response) {
@@ -85,5 +85,13 @@ public class PessoaController {
                 .map(PessoaMapper::pessoaResponse)
                 .toList();
     }
+
+//    @GetMapping("/teste")
+//    public List<PessoaResponse> teste(@RequestParam String nome) {
+//        return service.example(nome)
+//                .stream()
+//                .map(PessoaMapper::pessoaResponse)
+//                .toList();
+//    }
 }
 

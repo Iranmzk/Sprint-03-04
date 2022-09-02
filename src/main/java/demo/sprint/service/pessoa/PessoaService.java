@@ -1,9 +1,13 @@
 package demo.sprint.service.pessoa;
 
 import demo.sprint.configuration.exception.apinotfoundexception.ApiNotFoundException;
-import demo.sprint.model.pessoa.Pessoa;
-import demo.sprint.repository.PessoaRepository;
+import demo.sprint.repository.pessoa.PessoaRepository;
+import demo.sprint.repository.pessoa.model.pessoa.Pessoa;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +32,9 @@ public class PessoaService {
         return pessoaRepository.findById(id)
                 .orElseThrow(() -> new ApiNotFoundException("Id não encontrado " + id));
     }
-    public List<Pessoa> findAll(){
-        return pessoaRepository.findAll();
+    public Page<Pessoa> findAll(Pageable pageable){
+        return pessoaRepository.findAll(pageable);
     }
-
 
     public void deleteAllById(List<String> id){
         pessoaRepository.deleteAllById(id);
@@ -40,4 +43,19 @@ public class PessoaService {
     public List<Pessoa> findByNomeContains(String nome){
         return pessoaRepository.findByNomeContains(nome);
     }
+
+    public List<Pessoa> getAllByExample(Pessoa pessoa) {
+        Example<Pessoa> e = Example.of(pessoa);
+        return pessoaRepository.findAll(e);
+    }
+
+//    public List<Pessoa> example(String nome){
+//        Query query = new Query()
+//                .addCriteria(Criteria
+//                        .where("nome")
+//                        .is(nome));
+//
+//                return mongoTemplate.find(query, Pessoa.class);
+//        mongoTemplate.insert(Pessoa.class);
+//    }
 }

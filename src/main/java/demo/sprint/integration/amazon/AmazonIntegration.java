@@ -1,21 +1,23 @@
 package demo.sprint.integration.amazon;
 
-import demo.sprint.integration.amazon.model.DocsIntegration;
 import demo.sprint.integration.amazon.model.DocsResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-//@NoArgsConstructor
+@AllArgsConstructor
 public class AmazonIntegration {
-    @Qualifier("restTemplateBuilderAmazon")
-    @Autowired
-    private RestTemplate restTemplate;
+
+    private RestTemplate restTemplateBuilderAmazon;
+
+// A constructor injection.
+//    public AmazonIntegration(@Qualifier("restTemplateBuilderAmazon") RestTemplate restTemplate) {
+//        this.restTemplate = restTemplate;
+//    }
+
     public DocsResponse findProdAmazon(String name) {
-        return restTemplate.getForObject("/api/product?country=BR&keyword="
+        return restTemplateBuilderAmazon.getForObject("/api/product?country=BR&keyword="
                 .concat(name),DocsResponse.class);
     }
 }
-

@@ -23,14 +23,14 @@ public class SpringFoxConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
-
+    @Bean
     public ApiInfo info(){
         return new ApiInfoBuilder()
                 .title("Walmart and Amazon API")
                 .contact(new Contact("Iran",
                         "https://www.linkedin.com/in/iran-mizunski-5824b416b/",
                         "testeApi@gmail.com"))
-                .description("Consulte prices and stock in the Walmart and Amazon shop")
+                .description("Check prices and stock in the Walmart and Amazon shop")
                 .version("Beta")
                 .license("terms of service")
                 .build();

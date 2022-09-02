@@ -1,5 +1,6 @@
 package demo.sprint.controller.walmart.model.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductControllerResponse {
     @NotNull
     public String usItemId;
@@ -21,4 +23,5 @@ public class ProductControllerResponse {
     public String name;
     @JsonProperty("shortDescription")
     public String description;
+//    public String priceInfo;
 }

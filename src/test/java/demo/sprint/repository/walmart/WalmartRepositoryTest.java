@@ -1,17 +1,16 @@
 package demo.sprint.repository.walmart;
 
-import demo.sprint.repository.WalmartRepository;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import static demo.sprint.repository.walmart.stub.WalmartRepositoryStub.expectedEntityStub;
-import static demo.sprint.repository.walmart.stub.WalmartRepositoryStub.expectedRequiredStub;
-import static org.junit.jupiter.api.Assertions.*;
+import static demo.sprint.repository.walmart.stub.WalmartRepositoryStub.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataMongoTest
 class WalmartRepositoryTest {
@@ -24,11 +23,12 @@ class WalmartRepositoryTest {
     }
 
     @Test
-    void teste1(@Autowired MongoTemplate template){
+    @DisplayName("Test findById")
+    void teste1(){
        var expected = expectedRequiredStub();
        var entity = expectedEntityStub();
 
-       template.save(entity);
+       walmartRepository.save(entity);
 
        var actual = walmartRepository.findById("54457638");
 
@@ -36,14 +36,36 @@ class WalmartRepositoryTest {
     }
 
     @Test
-    @DisplayName("Testando se está salvando no repositório")
-    void teste2(@Autowired MongoTemplate template) {
+    @DisplayName("testando se o repositorio está vazio")
+    void teste2() {
+        assertThat(walmartRepository.findAll()).isEmpty();
+    }
+
+    @Test
+    @DisplayName("testando se o repositorio está salvando")
+    void teste3() {
+        var expected = expectedResponseFindByNameStub();
         var entity = expectedEntityStub();
+        walmartRepository.save(entity);
 
-        template.save(entity);
+        assertThat(walmartRepository.findAll()).isEqualTo(expected);
+    }
 
-        var actual = walmartRepository.findByNameContains("Gift Card", Pageable.ofSize(1));
+//    @Test
+//    @DisplayName("Testing findByNameContains")
+//    void test4() {
+//        var expected = expectedResponseFindByNameStub();
+//        var entity = expectedEntityStub();
+//
+//        walmartRepository.save(entity);
+//
+//        var actual = walmartRepository.findByNameContains("Birthday Walmart Gift Card");
+//
+//        assertEquals(expected, actual);
+//    }
 
-        assertNull(actual);
+    @Test
+    void test5(){
+
     }
 }

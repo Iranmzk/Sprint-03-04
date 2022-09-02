@@ -1,6 +1,6 @@
 package demo.sprint.service.walmart.mapper.response;
 
-import demo.sprint.model.walmartentity.ProductEntity;
+import demo.sprint.repository.walmart.walmartentity.ProductEntity;
 import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 
 

@@ -19,20 +19,4 @@ public class AmazonService {
         return toServiceMapper(integration.findProdAmazon(name));
     }
 }
-//                .map(productValidation())
-//                .map(IntegrationToServiceResponse::toEntityMapper)
-//                .map(amazonRepository::save)
-//                .map(EntityToServiceResponse::toServiceResponse)
-//                .orElseThrow(() -> new ApiNotFoundException("Name not found"));
-
-//    private Function<DocsResponse, DocsResponse> productValidation() {
-//        return product -> {
-//            // A class that provides static utility methods for simple operations on objects.
-//            if (ObjectUtils.isEmpty(Arrays.stream(product.getProductsAmazon())
-//                    .map(DocsIntegration::getName))) {
-//                throw new ApiNotFoundException("Please,insert a valid product");
-//            }
-//            return product;
-//        };
-//    }
 
