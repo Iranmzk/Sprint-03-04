@@ -15,12 +15,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Walmart")
 public class ProductEntity {
     @Id
-    public String usItemId;
-    public String id;
-    public String segment;
-    public String type;
-    public String name;
+    private String usItemId;
+    private String id;
+    private String segment;
+    private String type;
+    private String name;
     @JsonProperty("shortDescription")
-    public String description;
-    public String priceInfo;
+    private String description;
+    private Double price;
+    private String currencyUnit;
 }

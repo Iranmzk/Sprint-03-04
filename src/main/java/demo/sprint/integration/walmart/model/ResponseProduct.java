@@ -14,11 +14,12 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class ResponseProduct {
     @NotNull
-    public String usItemId;
-    public String id;
-    public String segment;
-    public String type;
-    public String name;
+    private String usItemId;
+    private String id;
+    private String segment;
+    private String type;
+    private String name;
     @JsonProperty("shortDescription")
-    public String description;
+    private String description;
+    private ResponsePriceInfo priceInfo;
 }

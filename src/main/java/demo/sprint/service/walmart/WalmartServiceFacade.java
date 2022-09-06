@@ -41,4 +41,8 @@ public class WalmartServiceFacade {
         return service.find(usItemId, name, segement, type);
     }
 
+    public List<ResponseServiceProduct> orderByPriceGte(Double price) {
+        return service.orderByPriceGte(price);
+    }
+
 }

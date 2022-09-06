@@ -15,6 +15,8 @@ public class ProductEntityResponseMapper {
                 .type(entity.getType())
                 .name(entity.getName())
                 .description(entity.getDescription())
+                .price(entity.getPrice())
+                .currencyUnit(entity.getCurrencyUnit())
                 .build();
     }
 

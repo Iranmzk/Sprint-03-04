@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataIntegrationResponse {
-    public ResponseData data;
+    private ResponseData data;
 }

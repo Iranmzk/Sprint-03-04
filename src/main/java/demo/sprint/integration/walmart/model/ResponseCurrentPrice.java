@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PriceResponse {
-    public WasPrice wasPrice;
+public class ResponseCurrentPrice {
+    private Double price;
+    private String currencyUnit;
 }

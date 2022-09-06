@@ -12,6 +12,8 @@ public class ProductControllerResponseMapper {
                 .segment(response.getSegment())
                 .name(response.getName())
                 .description(response.getDescription())
+                .price(response.getPrice())
+                .currencyUnit(response.getCurrencyUnit())
                 .build();
     }
 }

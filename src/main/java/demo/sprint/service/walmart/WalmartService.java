@@ -42,7 +42,7 @@ public class WalmartService {
                 .orElseThrow(() -> new ApiNotFoundException("not found"));
     }
 
-    public Page<ResponseServiceProduct> findAllProd(Pageable pageable){
+    public Page<ResponseServiceProduct> findAllProd(Pageable pageable) {
         return repository.findAll(pageable)
                 .map(ProductEntityResponseMapper::toProductEntity);
     }
@@ -51,11 +51,17 @@ public class WalmartService {
         repository.deleteAllById(usItemId);
     }
 
-    public List<ResponseServiceProduct> find(String usItemId, String name, String segement, String type){
-        return repository.find(usItemId, name, segement, type)
+    public List<ResponseServiceProduct> find(String usItemId, String name, String segment, String type) {
+        return repository.find(usItemId, name, segment, type)
                 .stream()
                 .map(ProductEntityResponseMapper::toProductEntity)
                 .collect(Collectors.toList());
     }
 
+    public List<ResponseServiceProduct> orderByPriceGte(Double price) {
+        return repository.orderGtePrice(price)
+                .stream()
+                .map(ProductEntityResponseMapper::toProductEntity)
+                .collect(Collectors.toList());
+    }
 }

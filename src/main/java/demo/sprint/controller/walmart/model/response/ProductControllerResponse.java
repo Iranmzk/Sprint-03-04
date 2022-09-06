@@ -16,12 +16,13 @@ import javax.validation.constraints.NotNull;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductControllerResponse {
     @NotNull
-    public String usItemId;
-    public String id;
-    public String segment;
-    public String type;
-    public String name;
+    private String usItemId;
+    private String id;
+    private String segment;
+    private String type;
+    private String name;
     @JsonProperty("shortDescription")
-    public String description;
-//    public String priceInfo;
+    private String description;
+    private Double price;
+    private String currencyUnit;
 }

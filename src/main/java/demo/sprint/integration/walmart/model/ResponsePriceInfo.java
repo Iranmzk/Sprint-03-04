@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WasPrice {
-    public String priceString;
+public class ResponsePriceInfo {
+    private ResponseCurrentPrice currentPrice;
 }
