@@ -1,5 +1,6 @@
 package demo.sprint.service.walmart;
 
+import demo.sprint.repository.walmart.walmartentity.ProductQuery;
 import demo.sprint.service.walmart.mapper.response.ProductEntityResponseMapper;
 import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 import lombok.AllArgsConstructor;
@@ -37,12 +38,8 @@ public class WalmartServiceFacade {
         service.deleteProdById(usItemId);
     }
 
-    public List<ResponseServiceProduct> find(String usItemId, String name, String segement, String type){
-        return service.find(usItemId, name, segement, type);
-    }
-
-    public List<ResponseServiceProduct> orderByPriceGte(Double price) {
-        return service.orderByPriceGte(price);
+    public List<ResponseServiceProduct> find(ProductQuery productQuery){
+        return service.find(productQuery);
     }
 
 }

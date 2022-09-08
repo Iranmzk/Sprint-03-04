@@ -3,8 +3,8 @@ package demo.sprint.controller.walmart;
 import demo.sprint.configuration.exception.apinotfoundexception.ApiNotFoundException;
 import demo.sprint.controller.walmart.model.mapper.ProductControllerResponseMapper;
 import demo.sprint.controller.walmart.model.response.ProductControllerResponse;
+import demo.sprint.repository.walmart.walmartentity.ProductQuery;
 import demo.sprint.service.walmart.WalmartServiceFacade;
-import demo.sprint.service.walmart.model.response.ResponseServiceProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,15 +47,11 @@ public class WalmartControllerFacade {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductControllerResponse> find(String usItemId, String name, String segment, String type){
-        return facade.find(usItemId, name, segment, type)
+    public List<ProductControllerResponse> find(ProductQuery productQuery){
+        return facade.find(productQuery)
                 .stream()
                 .map(ProductControllerResponseMapper::toControllerResponse)
                 .collect(Collectors.toList());
-    }
-
-    public List<ResponseServiceProduct> orderByPriceGte(Double price) {
-        return facade.orderByPriceGte(price);
     }
 
 }
