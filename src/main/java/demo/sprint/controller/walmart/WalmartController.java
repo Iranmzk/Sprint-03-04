@@ -41,13 +41,10 @@ public class WalmartController {
     }
 
     @GetMapping("/custom")
-    public List<ProductControllerResponse> find(@RequestBody
-                                                    @ApiParam(name = "Product Body", value = "a JSON representing the product, " +
-                                                            "with name, price, segment, type")
-                                                    ProductQuery productQuery) {
+    public List<ProductControllerResponse> find(@RequestBody@ApiParam(name = "Product Body", value = "a JSON representing the product, " +
+            "with name, price, segment, type") ProductQuery productQuery) {
         return facade.find(productQuery);
     }
-
 }
 
 

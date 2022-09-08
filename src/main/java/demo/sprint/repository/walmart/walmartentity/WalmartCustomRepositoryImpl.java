@@ -19,12 +19,13 @@ public class WalmartCustomRepositoryImpl implements WalmartCustomRepository {
     public List<ProductEntity> find(ProductQuery productQuery) {
 
         final Query query = new Query();
+        query.fields().include("usItemId").include("name").include("price");
         //        if (productQuery.getName() != null && !productQuery.getName().isEmpty()) {
 
         query.addCriteria(Criteria.where("name")
                 .regex(StringUtils.capitalize(productQuery.getName()))
                 .and("price")
-                .gt(productQuery.getPriceFloor())
+                .gt(productQuery.getPriceMin())
                 .lt(productQuery.getPriceMax()));
 
 
@@ -32,7 +33,6 @@ public class WalmartCustomRepositoryImpl implements WalmartCustomRepository {
     }
 
 }
-//        query.fields().include("usItemId").include("name").include("segment").include("price");
 //        final List<Criteria> criteria = new ArrayList<>();
 
 //        if (usItemId != null && !usItemId.isEmpty())
