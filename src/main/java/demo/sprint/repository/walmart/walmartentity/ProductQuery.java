@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProductQuery {
 
+    // Setting a default value for the field.
     @Builder.Default
     @ApiModelProperty(
             value = "Passed Empty when the name is not being queried",
