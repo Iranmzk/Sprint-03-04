@@ -24,7 +24,7 @@ public class WalmartCustomRepositoryImpl implements WalmartCustomRepository {
 
         query.addCriteria(
                 Criteria.where("name").regex(StringUtils.capitalize(productQuery.getName()))
-                        .and("price").gt(productQuery.getPriceMin()).lt(productQuery.getPriceMax()));
+                        .and("price").gte(productQuery.getPriceMin()).lte(productQuery.getPriceMax()));
         return template.find(query, ProductEntity.class);
     }
 

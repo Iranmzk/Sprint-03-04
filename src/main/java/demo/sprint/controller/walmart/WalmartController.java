@@ -20,7 +20,13 @@ public class WalmartController {
     private WalmartControllerFacade facade;
 
     @GetMapping("/stock-walmart")
-    public ProductControllerResponse findProductDetails(@RequestParam @Valid String usItemId) {
+    public ProductControllerResponse findProductDetails(@RequestParam
+                                                            @Valid
+                                                            @ApiParam(name = "Find by Id", value = "Return a JSON of product, " +
+                                                                    "searching in database and if don't found," +
+                                                                    " looks in the integration" +
+                                                                    " returning name,price,usItemId,segment,type and short description")
+                                                            String usItemId) {
         return facade.findProductDetails(usItemId);
     }
 
@@ -41,7 +47,7 @@ public class WalmartController {
     }
 
     @GetMapping("/custom")
-    public List<ProductControllerResponse> find(@RequestBody@ApiParam(name = "Product Body", value = "a JSON representing the product, " +
+    public List<ProductControllerResponse> find(@RequestBody @ApiParam(name = "Product Body", value = "a JSON representing the product, " +
             "with name, price, segment, type") ProductQuery productQuery) {
         return facade.find(productQuery);
     }

@@ -58,16 +58,4 @@ class WalmartRepositoryTest {
 
         assertEquals(expected, actual);
     }
-
-    @Test
-    void test5() {
-//        var expected = expectedResponseFindByNameStub();
-//        var entity = expectedEntityStub();
-//
-//        walmartRepository.save(entity);
-//
-//        var actual = walmartRepository.find("Birthday Walmart Gift Card");
-//
-//        assertEquals(expected, actual);
-    }
 }
