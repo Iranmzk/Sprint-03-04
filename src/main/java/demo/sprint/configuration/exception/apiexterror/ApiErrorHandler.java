@@ -18,7 +18,7 @@ public class ApiErrorHandler implements ResponseErrorHandler {
             // A class that provides static utility methods for simple operations on objects.
             if (ObjectUtils.isEmpty(product.getData()
                     .getProduct())) {
-                throw new ApiNotFoundException("Insert a valid usItemId");
+                throw new ApiNotFoundException("UsItemId");
             }
             return product;
         };
@@ -36,13 +36,15 @@ public class ApiErrorHandler implements ResponseErrorHandler {
     public void handleError(ClientHttpResponse httpResponse)
             throws IOException {
 
-        if (httpResponse.getStatusCode()
-                .series() == SERVER_ERROR) {
-        } else if (httpResponse.getStatusCode()
-                .series() == CLIENT_ERROR) {
-            if (httpResponse.getStatusCode() == HttpStatus.NOT_FOUND) {
-                throw new ApiNotFoundException("Not found");
-            }
+        switch (httpResponse.getStatusCode()
+                .series()) {
+            case SERVER_ERROR:
+                break;
+            case CLIENT_ERROR:
+                if (httpResponse.getStatusCode() == HttpStatus.NOT_FOUND) {
+                    throw new ApiNotFoundException("Not found");
+                }
+                break;
         }
     }
 }

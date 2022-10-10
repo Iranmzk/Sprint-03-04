@@ -17,10 +17,10 @@ import javax.validation.constraints.NotNull;
 public class Pessoa {
     @Id
     private String id;
-    @NotNull(message = "Por favor, insira um nome")
-    private String nome;
-    private String sobrenome;
+    @NotNull(message = "please, insert a name")
+    private String name;
+    private String postName;
     private String email;
-    private Integer idade;
-    private String senha;
+    private Integer age;
+    private String password;
 }

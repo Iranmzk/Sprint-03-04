@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfig {
 
+//TODO: DEFINIR HEADER PROPRIEDADES SPRING, CLASSE ENVIRONMENT
+
     @Bean
     public RestTemplate restTemplateWalmart() {
         return new RestTemplateBuilder()

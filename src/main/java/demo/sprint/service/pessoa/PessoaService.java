@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,13 +48,4 @@ public class PessoaService {
         return pessoaRepository.findAll(e);
     }
 
-//    public List<Pessoa> example(String nome){
-//        Query query = new Query()
-//                .addCriteria(Criteria
-//                        .where("nome")
-//                        .is(nome));
-//
-//                return mongoTemplate.find(query, Pessoa.class);
-//        mongoTemplate.insert(Pessoa.class);
-//    }
 }

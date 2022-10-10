@@ -15,9 +15,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PessoaResponseSenha {
     private String id;
-    private String nome;
-    private String sobrenome;
-    private Integer idade;
+    private String name;
+    private String postName;
+    private Integer age;
     private String email;
-    private String senha;
+    private String password;
 }

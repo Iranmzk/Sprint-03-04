@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = {WalmartService.class, WalmartRepository.class,WalmartIntegration.class})
+@ContextConfiguration(classes = {WalmartService.class, WalmartRepository.class, WalmartIntegration.class})
 @ExtendWith(MockitoExtension.class)
 class WalmartServiceTest {
 
@@ -59,7 +59,7 @@ class WalmartServiceTest {
      */
     @Test
     @DisplayName("Procurando na integração e salvando no banco de dados")
-    void retornarProcuraNaIntegração() {
+    void retornarProcuraNaIntegracao() {
         var expectedServiceResponse = WalmartServiceResponseExpectedStub();
         var ProductEntity = productEntityStub();
         var expectedIntegrationResponse = WalmartIntegrationStubResponse();
@@ -77,23 +77,20 @@ class WalmartServiceTest {
 
     // Testing if the method findProductIntegration is throwing an exception.
     @Test
-    @DisplayName("Retornando um bad request")
+    @DisplayName("Returning a bad request")
     void whenNotFindProductIntegrationBadRequest() {
-
         var expectedIntegrationResponse = WalmartServiceStubBadRequest();
 
-        when(integration.findProductDetails("13"))
+        when(integration.findProductDetails("13r"))
                 .thenReturn(expectedIntegrationResponse);
 
 // Testing if the method findProductIntegration is throwing an exception.
         Exception exception = assertThrows(ApiNotFoundException.class,
-                () -> walmartService.findProductIntegration("13"));
+                () -> walmartService.findProductIntegration("13r"));
 
-        var expectativa = "not found";
+        var expectation = "not found";
         var actual = exception.getMessage();
 
-        assertEquals(actual, expectativa);
+        assertEquals(expectation, actual);
     }
-
-
 }

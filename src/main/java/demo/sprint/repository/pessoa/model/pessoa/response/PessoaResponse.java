@@ -13,8 +13,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PessoaResponse {
-        private String nome;
-        private String sobrenome;
-        private Integer idade;
+        private String name;
+        private String postName;
+        private Integer age;
         private String email;
         }

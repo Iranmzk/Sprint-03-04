@@ -20,14 +20,4 @@ public class ProductEntityResponseMapper {
                 .build();
     }
 
-//    public static ResponseServiceProduct getIntegration(DataIntegrationResponse response){
-//        var responseProdIntegration = response.getData().getProduct();
-//        return ResponseServiceProduct.builder()
-//                .usItemId(responseProdIntegration.getUsItemId())
-//                .id(responseProdIntegration.getId())
-//                .segment(responseProdIntegration.getSegment())
-//                .type(responseProdIntegration.getType())
-//                .name(responseProdIntegration.getName())
-//                .build();
-//    }
 }

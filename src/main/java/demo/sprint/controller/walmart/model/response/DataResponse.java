@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class DataControlerResponse {
+public class DataResponse {
     private ResponseControllerProduct data;
 }

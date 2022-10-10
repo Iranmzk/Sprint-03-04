@@ -15,6 +15,7 @@ public class AmazonControllerFacade {
 
     private final AmazonServiceFacade facade;
 
+    @SuppressWarnings("unused")
     public List<ControllerResponse> findProductsDetails(String name){
     return serviceToController(facade.findProductDetails(name));
     }

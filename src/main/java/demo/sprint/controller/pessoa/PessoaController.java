@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/v1/sprint03")
 public class PessoaController {
     private PessoaService service;
-    @PostMapping("/pessoas")
+    @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponseSenha save(@RequestBody @Valid PessoaRequest pessoaRequest) {
         return PessoaMapper.pessoaResponseSenha(service.save(PessoaMapper.requestPessoa(pessoaRequest)));
@@ -68,6 +68,7 @@ public class PessoaController {
                 .map(PessoaMapper::pessoaResponse);
     }
 
+    @SuppressWarnings("SameReturnValue")
     @GetMapping("/create-coockie")
     public String criandoCoookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = new Cookie("cookieTest", "cookie-value");
@@ -86,12 +87,5 @@ public class PessoaController {
                 .toList();
     }
 
-//    @GetMapping("/teste")
-//    public List<PessoaResponse> teste(@RequestParam String nome) {
-//        return service.example(nome)
-//                .stream()
-//                .map(PessoaMapper::pessoaResponse)
-//                .toList();
-//    }
 }
 
