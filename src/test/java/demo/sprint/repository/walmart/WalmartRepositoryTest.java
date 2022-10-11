@@ -1,6 +1,7 @@
 package demo.sprint.repository.walmart;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,47 +16,48 @@ class WalmartRepositoryTest {
     @Autowired
     private WalmartRepository walmartRepository;
 
+    @BeforeEach
+    void beforeEach() {
+        var entity = expectedEntityStub();
+        walmartRepository.save(entity);
+    }
+
     @AfterEach
     void tearDown() {
         walmartRepository.deleteAll();
     }
 
     @Test
-    void teste1() {
+    void testingFindById() {
         var expected = expectedRequiredStub();
-        var entity = expectedEntityStub();
-
-        walmartRepository.save(entity);
-
-        var actual = walmartRepository.findById("54457638");
+        var actual = walmartRepository.findById("841765146");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void teste2() {
-        assertThat(walmartRepository.findAll()).isEmpty();
-    }
-
-    @Test
-    void teste3() {
-        var expected = expectedResponseFindByNameStub();
-        var entity = expectedEntityStub();
-        walmartRepository.save(entity);
-
-        assertThat(walmartRepository.findAll()).isEqualTo(expected);
+    void testFindAll() {
+        assertThat(walmartRepository.findAll()).isNotEmpty();
     }
 
     @Test
     @DisplayName("Testing findByNameContains")
-    void test4() {
+    void testFindByNameContains() {
         var expected = expectedResponseFindByNameStub();
-        var entity = expectedEntityStub();
 
-        walmartRepository.save(entity);
-
-        var actual = walmartRepository.findByNameContains("Birthday Walmart Gift Card");
+        var actual = walmartRepository.findByNameContains("PlayStation");
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Testing findCustom")
+    void testQueryClass() {
+        var query = actualQueryStub();
+        var listStub = expectedResponseFindByNameStub2();
+
+        var actual = walmartRepository.findCustom(query);
+
+        assertEquals(listStub, actual);
     }
 }
