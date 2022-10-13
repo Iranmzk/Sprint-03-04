@@ -1,6 +1,7 @@
 package demo.sprint.configuration.rest;
 
 import demo.sprint.configuration.exception.apiexterror.ApiErrorHandler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,15 +11,17 @@ import org.springframework.web.client.RestTemplate;
 // container to generate bean definitions and service requests for those beans at runtime.
 @Configuration
 public class RestConfig {
-
-//TODO: DEFINIR HEADER PROPRIEDADES SPRING, CLASSE ENVIRONMENT
+     @Value("${apiKey}")
+    private String apiKey;
+     @Value("${apiKeyRespond}")
+    private String apiKeyRespond;
 
     @Bean
     public RestTemplate restTemplateWalmart() {
         return new RestTemplateBuilder()
                 .rootUri("https://walmart.p.rapidapi.com")
                 .defaultHeader("X-RapidAPI-Host", "walmart.p.rapidapi.com")
-                .defaultHeader("X-RapidAPI-Key", "bdbd0f936bmshe7a392f9fa3452bp1f3ba9jsnfbe1a9455901")
+                .defaultHeader(apiKey, apiKeyRespond)
                 .errorHandler(new ApiErrorHandler())
                 .build();
     }
@@ -27,7 +30,7 @@ public class RestConfig {
         return new RestTemplateBuilder()
                 .rootUri("https://amazon24.p.rapidapi.com")
                  .defaultHeader("X-RapidAPI-Host", "amazon24.p.rapidapi.com")
-                 .defaultHeader("X-RapidAPI-Key", "bdbd0f936bmshe7a392f9fa3452bp1f3ba9jsnfbe1a9455901")
+                 .defaultHeader(apiKey, apiKeyRespond)
                  .errorHandler(new ApiErrorHandler())
                  .build();
      }
