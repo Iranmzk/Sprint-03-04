@@ -11,29 +11,29 @@ public class PessoaMapper {
     public static Pessoa requestPessoa(PessoaRequest pessoaRequest){
         return Pessoa.builder()
                 .id(pessoaRequest.getId())
-                .nome(pessoaRequest.getNome())
-                .sobrenome(pessoaRequest.getSobrenome())
-                .idade(pessoaRequest.getIdade())
+                .name(pessoaRequest.getName())
+                .postName(pessoaRequest.getPostName())
+                .age(pessoaRequest.getAge())
                 .email(pessoaRequest.getEmail())
-                .senha(pessoaRequest.getSenha())
+                .password(pessoaRequest.getPassword())
                 .build();
     }
 
     public static PessoaResponseSenha pessoaResponseSenha(Pessoa pessoa){
         return PessoaResponseSenha.builder()
                 .id(pessoa.getId())
-                .nome(pessoa.getNome())
-                .sobrenome(pessoa.getSobrenome())
-                .idade(pessoa.getIdade())
+                .name(pessoa.getName())
+                .postName(pessoa.getPostName())
+                .age(pessoa.getAge())
                 .email(pessoa.getEmail())
-                .senha(pessoa.getSenha())
+                .password(pessoa.getPassword())
                 .build();
     }
     public static PessoaResponse pessoaResponse(Pessoa pessoa){
         return PessoaResponse.builder()
-                .nome(pessoa.getNome())
-                .sobrenome(pessoa.getSobrenome())
-                .idade(pessoa.getIdade())
+                .name(pessoa.getName())
+                .postName(pessoa.getPostName())
+                .age(pessoa.getAge())
                 .email(pessoa.getEmail())
                 .build();
     }

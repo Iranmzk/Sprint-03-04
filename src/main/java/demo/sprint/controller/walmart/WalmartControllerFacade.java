@@ -40,13 +40,6 @@ public class WalmartControllerFacade {
                 .map(ProductControllerResponseMapper::toControllerResponse);
     }
 
-    public List<ProductControllerResponse> findByName(String name) {
-        return facade.findByName(name)
-                .stream()
-                .map(ProductControllerResponseMapper::toControllerResponse)
-                .collect(Collectors.toList());
-    }
-
     public List<ProductControllerResponse> find(ProductQuery productQuery){
         return facade.find(productQuery)
                 .stream()

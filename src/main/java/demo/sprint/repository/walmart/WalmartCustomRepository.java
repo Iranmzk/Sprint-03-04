@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface WalmartCustomRepository {
-    List<ProductEntity> find(ProductQuery productQuery);
+    List<ProductEntity> findCustom(ProductQuery productQuery);
 }

@@ -16,11 +16,11 @@ import javax.validation.constraints.NotNull;
 public class PessoaRequest {
     private String id;
     @NotNull
-    private String nome;
-    private String sobrenome;
+    private String name;
+    private String postName;
     @NotNull
     private String email;
     @NotNull
-    private Integer idade;
-    private String senha;
+    private Integer age;
+    private String password;
 }

@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface PessoaRepository extends MongoRepository<Pessoa,String> {
     @Query(fields = "{'nome': 1, 'email': 1, 'id':0}")
-    List<Pessoa> findByNomeContains(String nome);
+    List<Pessoa> findByNameContains(String nome);
 }

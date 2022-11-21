@@ -40,7 +40,7 @@ public class PessoaService {
     }
 
     public List<Pessoa> findByNomeContains(String nome){
-        return pessoaRepository.findByNomeContains(nome);
+        return pessoaRepository.findByNameContains(nome);
     }
 
     public List<Pessoa> getAllByExample(Pessoa pessoa) {

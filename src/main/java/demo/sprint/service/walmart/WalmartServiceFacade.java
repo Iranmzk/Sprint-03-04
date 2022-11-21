@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -21,13 +20,6 @@ public class WalmartServiceFacade {
         return service.findByUsItemId(usItemId)
                 .map(ProductEntityResponseMapper::toProductEntity)
                 .orElseGet(() -> service.findProductIntegration(usItemId));
-    }
-
-    public List<ResponseServiceProduct> findByName(String name){
-        return service.findByNameEntity(name)
-                .stream()
-                .map(ProductEntityResponseMapper::toProductEntity)
-                .collect(Collectors.toList());
     }
 
     public Page<ResponseServiceProduct> findAllProd(Pageable pageable){

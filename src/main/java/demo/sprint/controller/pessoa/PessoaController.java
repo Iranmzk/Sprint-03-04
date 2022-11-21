@@ -70,11 +70,10 @@ public class PessoaController {
 
     @SuppressWarnings("SameReturnValue")
     @GetMapping("/create-coockie")
-    public String criandoCoookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response) {
-        Cookie cookie = new Cookie("cookieTest", "cookie-value");
-        cookie.getValue();
-        cookie.getName();
+    public String createCookie(Pessoa pessoa, HttpServletRequest request, HttpServletResponse response) {
+        var cookie = new Cookie("cookieTest", "cookie-value");
         cookie.setMaxAge(60 * 60 * 24);
+
         response.addCookie(cookie);
         return "cookie-recived/";
     }

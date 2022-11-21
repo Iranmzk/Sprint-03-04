@@ -22,9 +22,9 @@ import static org.springframework.http.HttpStatus.*;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(ApiNotFoundException.class)
-    @ResponseStatus (BAD_REQUEST)
+    @ResponseStatus(BAD_REQUEST)
     public ErrorResponse handleApiRequestExceptionNotFound(ApiNotFoundException e) {
-        return  ErrorResponse.builder()
+        return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .error(List.of(ErrorObject.builder()
                         .message(e.getMessage())
@@ -35,9 +35,9 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus (BAD_REQUEST)
+    @ResponseStatus(BAD_REQUEST)
     public ErrorResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        return  ErrorResponse.builder()
+        return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .error(List.of(ErrorObject.builder()
                         .message(e.getMessage())
@@ -49,7 +49,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(BAD_REQUEST)
-    public ErrorResponse handleInvalidDateException(HttpMessageNotReadableException exception){
+    public ErrorResponse handleInvalidDateException(HttpMessageNotReadableException exception) {
         return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .error(List.of(ErrorObject.builder()
@@ -61,7 +61,7 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    @ResponseStatus (METHOD_NOT_ALLOWED)
+    @ResponseStatus(METHOD_NOT_ALLOWED)
     public ErrorResponse methodArgumentNotValidException(HttpRequestMethodNotSupportedException exception) {
         return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
@@ -74,7 +74,7 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(ResponseStatusException.class)
-    @ResponseStatus (BAD_REQUEST)
+    @ResponseStatus(BAD_REQUEST)
     public ErrorResponse handleException(Exception e) {
         return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
@@ -87,7 +87,7 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus (INTERNAL_SERVER_ERROR)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
     public ErrorResponse internalServerError(Exception e) {
         return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
@@ -98,8 +98,9 @@ public class ApiExceptionHandler {
                         .build()))
                 .build();
     }
+
     @ExceptionHandler(HttpClientErrorException.class)
-    @ResponseStatus (NOT_FOUND)
+    @ResponseStatus(NOT_FOUND)
     public ErrorResponse notFound(HttpClientErrorException e) {
         return ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())

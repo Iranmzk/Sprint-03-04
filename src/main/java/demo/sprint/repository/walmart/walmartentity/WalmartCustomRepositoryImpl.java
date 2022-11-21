@@ -16,12 +16,10 @@ public class WalmartCustomRepositoryImpl implements WalmartCustomRepository {
     final MongoTemplate template;
 
     @Override
-    public List<ProductEntity> find(ProductQuery productQuery) {
+    public List<ProductEntity> findCustom(ProductQuery productQuery) {
 
         final Query query = new Query();
         query.fields().include("usItemId").include("name").include("price");
-        //        if (productQuery.getName() != null && !productQuery.getName().isEmpty()) {
-
         query.addCriteria(
                 Criteria.where("name").regex(StringUtils.capitalize(productQuery.getName()))
                         .and("price").gte(productQuery.getPriceMin()).lte(productQuery.getPriceMax()));
@@ -29,21 +27,4 @@ public class WalmartCustomRepositoryImpl implements WalmartCustomRepository {
     }
 
 }
-//        final List<Criteria> criteria = new ArrayList<>();
-
-//        if (usItemId != null && !usItemId.isEmpty())
-//            criteria.add(Criteria.where("usItemId").is(usItemId));
-//        if (name != null && !name.isEmpty())
-//            criteria.add(Criteria.where("name").regex(name));
-//        if (segment != null && !segment.isEmpty())
-//            criteria.add(Criteria.where("segment").is(segment));
-//        if (type != null && !type.isEmpty())
-//            criteria.add(Criteria.where("type").is(type));
-//        if (price != null)
-//            criteria.add(Criteria.where("price").lte(price).gte(price));
-//
-//        if (!criteria.isEmpty())
-//            query.addCriteria(new Criteria().andOperator(criteria.toArray(new Criteria[0])));
-//
-//        return template.find(query, ProductEntity.class);
 

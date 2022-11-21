@@ -18,8 +18,17 @@ import java.util.List;
 @RequestMapping("/v1/prod")
 @AllArgsConstructor
 public class WalmartController {
+//    PREFERENCIA POR QUERY-PARAM NO GET
 
     private WalmartControllerFacade facade;
+
+    @GetMapping("/stock-walmart")
+    @ApiResponses(
+            @ApiResponse(code = 404, message = "insert a valid usItemId", response = ErrorResponse.class)
+    )
+    public ProductControllerResponse findById(@RequestParam String usItemId){
+        return facade.findProductDetails(usItemId);
+    }
 
     @GetMapping("/stock-walmart-overall")
     @ApiResponses(

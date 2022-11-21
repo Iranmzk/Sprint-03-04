@@ -14,7 +14,8 @@ public class WalmartRepositoryStub {
                 .id("61VJQU4ADV44")
                 .segment("Electronics")
                 .type("Video Game Console")
-                .name("PlayStation 5 Digital Edition with PS5 Starlight Blue DualSense Controller W/ Pulse Headset Limited Bundle")
+                .name("PlayStation 5 Digital Edition with PS5 Starlight Blue DualSense " +
+                        "Controller W/ Pulse Headset Limited Bundle")
                 .price(769.00)
                 .currencyUnit("USD")
                 .description("Explore uncharted virtual territories and slay dragons with this sleek" +
@@ -42,14 +43,6 @@ public class WalmartRepositoryStub {
                 .build());
     }
 
-    public static List<ProductEntity> expectedResponseFindByNameStub2() {
-        return List.of(ProductEntity.builder()
-                .usItemId("841765146")
-                .name("PlayStation 5 Digital Edition with PS5 Starlight Blue DualSense Controller W/ Pulse Headset Limited Bundle")
-                .price(769.00)
-                .build());
-    }
-
     public static ProductEntity expectedEntityStub() {
         return ProductEntity.builder()
                 .usItemId("841765146")
@@ -67,10 +60,17 @@ public class WalmartRepositoryStub {
                 .build();
     }
 
+    public static List<ProductEntity> expectedResponseQueryStub() {
+        return List.of(ProductEntity.builder()
+                .usItemId("841765146")
+                .name("PlayStation 5 Digital Edition with PS5 Starlight Blue DualSense Controller W/ Pulse Headset Limited Bundle")
+                .price(769.00)
+                .build());
+    }
+
     public static ProductQuery actualQueryStub() {
         return ProductQuery.builder()
-                .name("PlayStation 5 Digital Edition with PS5 Starlight Blue DualSense Controller" +
-                        " W/ Pulse Headset Limited Bundle")
+                .name("PlayStation 5")
                 .priceMax(799.00)
                 .build();
     }

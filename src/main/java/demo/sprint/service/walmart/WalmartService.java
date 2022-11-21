@@ -52,7 +52,7 @@ public class WalmartService {
     }
 
     public List<ResponseServiceProduct> find(ProductQuery productQuery) {
-        return repository.find(productQuery)
+        return repository.findCustom(productQuery)
                 .stream()
                 .map(ProductEntityResponseMapper::toProductEntity)
                 .toList();

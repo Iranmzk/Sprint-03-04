@@ -30,6 +30,7 @@ class WalmartRepositoryTest {
     @Test
     void testingFindById() {
         var expected = expectedRequiredStub();
+
         var actual = walmartRepository.findById("841765146");
 
         assertEquals(expected, actual);
@@ -54,7 +55,7 @@ class WalmartRepositoryTest {
     @DisplayName("Testing findCustom")
     void testQueryClass() {
         var query = actualQueryStub();
-        var listStub = expectedResponseFindByNameStub2();
+        var listStub = expectedResponseQueryStub();
 
         var actual = walmartRepository.findCustom(query);
 
